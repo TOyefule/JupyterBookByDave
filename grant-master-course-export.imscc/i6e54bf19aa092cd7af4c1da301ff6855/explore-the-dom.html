@@ -1,0 +1,31 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Explore the DOM</title>
+</head>
+<body>
+<p><span>With the HTML DOM, JavaScript can access and change all the elements of an HTML document.</span></p>
+<p>When a web page is loaded, the browser creates a <strong>D</strong>ocument <strong>O</strong>bject <strong>M</strong>odel of the page.</p>
+<p>The <strong>HTML DOM</strong> model is constructed as a tree of <strong>Objects</strong>:</p>
+<p><img src="https://canvas.instructure.com/courses/1430496/files/68992638/preview" alt="pic_htmltree.gif" data-api-endpoint="https://canvas.instructure.com/api/v1/courses/1430496/files/68992638" data-api-returntype="File"></p>
+<p>The HTML DOM is a standard <strong>object</strong> model and <strong>programming interface</strong> for HTML. It defines:</p>
+<ul>
+<li>The HTML elements as <strong>objects</strong>
+</li>
+<li>The <strong>properties</strong> of all HTML elements</li>
+<li>The <strong>methods</strong> to access all HTML elements</li>
+<li>The <strong>events</strong> for all HTML elements</li>
+</ul>
+<p>In other words: The HTML DOM is a standard for how to get, change, add, or delete HTML elements.</p>
+<p> </p>
+<p>Assignment:</p>
+<p>Go back to your Crab Cake recipe web page and follow the instructions below.</p>
+<p>Add the following script to your web page. When you click on the button the script will list all the elements in the DOM for your web page. Add another tag and run the script again. You should see your new tag.</p>
+<p><strong>The script should be placed between the &lt;head&gt; and &lt;/head&gt; tags.</strong></p>
+<pre>&lt;script language="JavaScript"&gt;<br>&lt;!--<br>function listTags()<br>{<br> var tag, tags;<br> // or you can use var allElem=document.all; and loop on it<br> tags = "The tags in the page are:"<br> for(i = 0; i &lt; document.all.length; i++)<br> {<br>   tag = document.all(i).tagName;<br>   tags = tags + "&lt;br/&gt;" + tag;<br> }<br> document.write(tags);<br>}// --&gt;<br>&lt;/script&gt;</pre>
+<p> </p>
+<p>Also, add the following button to your page so the function will run when the button is clicked.</p>
+<pre>&lt;button onclick="<span>listTags</span>()"&gt;List my Tags&lt;/button&gt;</pre>
+<p> </p>
+</body>
+</html>

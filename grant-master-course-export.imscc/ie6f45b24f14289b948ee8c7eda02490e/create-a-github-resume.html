@@ -1,0 +1,203 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Create a GitHub Resume</title>
+</head>
+<body>
+<h3>Use JavaScript to Dynamically Display your GitHub projects</h3>
+<h4>
+<a id="user-content-and-host-them-for-free-on-github-pages" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#and-host-them-for-free-on-github-pages" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>and host them for free on GitHub pages. And make a resume while you’re at it!</h4>
+<p><strong>Prerequisite</strong>: you should have multiple GitHub repositories already. If not, go back and create some. If you use linkedIn or have a blog you wish to link from this site then you can. I’ll also show you how to redirect a custom domain to this site as well. You can use your existing domain or register a new domain.</p>
+<p>GitHub Pages is a free offering from<span> </span><span class="skimlinks-unlinked">GitHub.com</span>. It allows you to static host web pages. The pages can be for a particular project. Or they can be for something else. Today we’re going to look at something else – a resume. GitHub Pages sites are publicly available on the internet.</p>
+<p><strong>Technologies</strong>: We will be creating this solution with GitHub, Prose, JavaScript, HTML, BootStrap, Gravatar. You will not need to install anything on your computer. Everything we use in this tutorial is free. You can also register a domain with<span> </span><span class="skimlinks-unlinked">hover.com</span><span> </span>or another provider. Registering the domain is not free. You do not need to register a domain for this tutorial.</p>
+<h4>
+<a id="user-content-organize-your-existing-github-repositories" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#organize-your-existing-github-repositories" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Organize your existing GitHub repositories</h4>
+<p>This page will list repositories that have a description. If you have a repository you don’t want included then don’t fill in the description. This page will display the repository name, the programming language and the description.</p>
+<h3>
+<a id="user-content-create-a-github-pages-repository" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#create-a-github-pages-repository" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Create a GitHub Pages repository</h3>
+<p>Create a new GitHub repository named<span> </span><strong><span class="skimlinks-unlinked">username.github.io</span></strong>, where username is your username on GitHub. The first part of the repository must exactly match your username.</p>
+<h3>
+<a id="user-content-create-a-branch-for-gh-pages" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#create-a-branch-for-gh-pages" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Create a branch for gh-pages</h3>
+<p>You’ll create your site on the branch called<span> </span><strong>gh-pages</strong>. You can create that when set up your repository on GitHub.</p>
+<p>You can set gh-pages as the default branch in GitHub if you go to the project settings and change the default project to gh-pages.</p>
+<p>All the work during this tutorial should be done under the<span> </span><strong>gh-pages</strong><span> </span>branch.</p>
+<h3>
+<a id="user-content-create-a-readmemd-file" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#create-a-readmemd-file" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Create a Readme.md file</h3>
+<p>It’s good practice to have a Readme file for every project. The Readme file is a good place for a brief summary of your project. This tutorial will work without a readme file but the readme is your way of telling other GitHub users what your project is about. Six months from now the Readme file will tell<span> </span><em>you</em><span> </span>what the project is about.</p>
+<h3>
+<a id="user-content-working-from-the-github-site" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#working-from-the-github-site" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Working from the GitHub site</h3>
+<p>You can complete this tutorial without additional software if you wish to work directly in the browser. Browse to<span> </span><span class="skimlinks-unlinked">Prose.io</span><span> </span>and allow Prose to access your GitHub repositories. Then select the GitHub Pages repository you created above. Prose is an IDE that allows you to edit code in a GitHub repository through the browser. You can also edit right through GitHub if you like.</p>
+<h3>
+<a id="user-content-working-from-your-computer" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#working-from-your-computer" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Working from your computer</h3>
+<p>If you wish to complete this tutorial from your computer then you need to clone your repository. Open a terminal in your home or workspace folder.</p>
+<pre><code>git clone https://username@github.com/username/repository.git
+git config set-url origin https://username@github.com/username/repository
+</code></pre>
+<p><strong>List of other git commands you need</strong></p>
+<pre><code>git branch gh-pages
+git checkout gh-pages
+git add --all
+git commit -m "commit message"
+git pull
+git push -u origin master
+git status
+</code></pre>
+<h3>
+<a id="user-content-create-an-index-page" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#create-an-index-page" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Create an index page</h3>
+<p><strong>Work on the gh-pages branch</strong>. Create a web page called<span> </span><span class="skimlinks-unlinked">index.html</span>. A minimal HTML5 page is below. You can create this page locally or work directly from GitHub.</p>
+<div class="highlight highlight-text-html-basic">
+<pre> &lt;!DOCTYPE html&gt;
+&lt;<span class="pl-ent">html</span>&gt;
+&lt;<span class="pl-ent">head</span>&gt;
+&lt;<span class="pl-ent">title</span>&gt;Your Page Title&lt;/<span class="pl-ent">title</span>&gt;
+&lt;/<span class="pl-ent">head</span>&gt;
+<span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span>
+&lt;<span class="pl-ent">body</span>&gt;
+
+&lt;/<span class="pl-ent">body</span>&gt;
+&lt;/<span class="pl-ent">html</span>&gt;</pre>
+</div>
+<h3>
+<a id="user-content-add-a-link-to-include-jquery" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#add-a-link-to-include-jquery" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Add a link to include jQuery</h3>
+<p>jQuery is a JavaScript library which simplifies HTML scripting. It’s free and open-source. We’ll use jQuery to retrieve your repository list. The script below will parse through the JSON-formatted list. It will generate an HTML list of your GitHub projects with descriptions.</p>
+<p>Add the script tags for the JQuery library just below the closing head tag. Do not put these in between the other script tags. You’ll use them in the next step.</p>
+<div class="highlight highlight-text-html-basic">
+<pre><span class="pl-c">&lt;!-- jQuery library --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="skimlinks-unlinked">https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js</span><span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre>
+</div>
+<p>Add the following code between script tags or as an external script. I saved mine in a file called<strong><span class="skimlinks-unlinked">listrepos.js</span></strong><span> </span>which is in a directory I created called<span> </span><strong>scripts</strong>. If you create a file in GitHub from the website and save the name as<span> </span><strong>scripts/<span class="skimlinks-unlinked">listrepos.js</span></strong>then the file will be saved in that directory.</p>
+<div class="highlight highlight-source-js">
+<pre><span class="pl-smi">jQuery</span>.<span class="pl-en">githubUser</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">username</span>, <span class="pl-smi">callback</span>) {
+   <span class="pl-smi">jQuery</span>.<span class="pl-en">getJSON</span>(<span class="pl-s"><span class="pl-pds">'</span><span class="skimlinks-unlinked">https://api.github.com/users</span>/<span class="pl-pds">'</span></span><span class="pl-k">+</span>username<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span>/repos?callback=?<span class="pl-pds">'</span></span>,callback)
+}
+
+<span class="pl-c">//this method</span>
+<span class="pl-smi">jQuery</span>.<span class="pl-smi">fn</span>.<span class="pl-en">loadRepositories</span> <span class="pl-k">=</span> <span class="pl-k">function</span>(<span class="pl-smi">username</span>) {
+    <span class="pl-v">this</span>.<span class="pl-en">html</span>(<span class="pl-s"><span class="pl-pds">"</span>&lt;span&gt;Querying GitHub for <span class="pl-pds">"</span></span> <span class="pl-k">+</span> username <span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">"</span>'s repositories...&lt;/span&gt;<span class="pl-pds">"</span></span>);
+
+    <span class="pl-k">var</span> target <span class="pl-k">=</span> <span class="pl-v">this</span>;
+    <span class="pl-smi">$</span>.<span class="pl-en">githubUser</span>(username, <span class="pl-k">function</span>(<span class="pl-smi">data</span>) {
+        <span class="pl-k">var</span> repos <span class="pl-k">=</span> <span class="pl-smi">data</span>.<span class="pl-c1">data</span>; <span class="pl-c">// JSON Parsing</span>
+        <span class="pl-en">sortByName</span>(repos);    
+
+        <span class="pl-k">var</span> list <span class="pl-k">=</span> <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;dl/&gt;<span class="pl-pds">'</span></span>);
+        <span class="pl-smi">target</span>.<span class="pl-en">empty</span>().<span class="pl-en">append</span>(list);
+        <span class="pl-en">$</span>(repos).<span class="pl-en">each</span>(<span class="pl-k">function</span>() {
+            <span class="pl-k">if</span> ((<span class="pl-v">this</span>.<span class="pl-c1">description</span>).<span class="pl-c1">length</span><span class="pl-k">&gt;</span><span class="pl-c1">0</span>){
+                <span class="pl-k">if</span> (<span class="pl-v">this</span>.<span class="pl-c1">name</span> <span class="pl-k">!=</span> (<span class="pl-smi">username</span>.<span class="pl-c1">toLowerCase</span>()<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span>.<span class="skimlinks-unlinked">github.com</span><span class="pl-pds">'</span></span>)) {
+                    <span class="pl-smi">list</span>.<span class="pl-en">append</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;dt&gt;&lt;a href="<span class="pl-pds">'</span></span><span class="pl-k">+</span> (<span class="pl-v">this</span>.<span class="pl-smi">homepage</span><span class="pl-k">?</span><span class="pl-v">this</span>.<span class="pl-smi">homepage</span><span class="pl-k">:</span><span class="pl-v">this</span>.<span class="pl-smi">html_url</span>) <span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span>"&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">name</span> <span class="pl-k">+</span> <span class="pl-s"><span class="pl-pds">'</span>&lt;/a&gt; &lt;em&gt;<span class="pl-pds">'</span></span><span class="pl-k">+</span>(<span class="pl-v">this</span>.<span class="pl-c1">language</span><span class="pl-k">?</span>(<span class="pl-s"><span class="pl-pds">'</span>(<span class="pl-pds">'</span></span><span class="pl-k">+</span><span class="pl-v">this</span>.<span class="pl-c1">language</span><span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span>)<span class="pl-pds">'</span></span>)<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>)<span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span>&lt;/em&gt;&lt;/dt&gt;<span class="pl-pds">'</span></span>);
+                    <span class="pl-smi">list</span>.<span class="pl-en">append</span>(<span class="pl-s"><span class="pl-pds">'</span>&lt;dd&gt;<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-v">this</span>.<span class="pl-c1">description</span> <span class="pl-k">+</span><span class="pl-s"><span class="pl-pds">'</span>&lt;/dd&gt;<span class="pl-pds">'</span></span>);
+                }
+            }
+        });      
+      });
+
+    <span class="pl-k">function</span> <span class="pl-en">sortByName</span>(<span class="pl-smi">repos</span>) {
+        <span class="pl-smi">repos</span>.<span class="pl-c1">sort</span>(<span class="pl-k">function</span>(<span class="pl-smi">a</span>,<span class="pl-smi">b</span>) {
+        <span class="pl-k">return</span> <span class="pl-smi">a</span>.<span class="pl-c1">name</span> <span class="pl-k">-</span> <span class="pl-smi">b</span>.<span class="pl-c1">name</span>;
+       });
+    }
+};
+</pre>
+</div>
+<p>If the above JavaScript code is in a separate file then add the code below to the<span> </span><span class="skimlinks-unlinked">index.html</span><span> </span>page. It should appear just before the closing tag for<span> </span><code>&lt;/head&gt;</code>.</p>
+<div class="highlight highlight-text-html-basic">
+<pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>scripts/<span class="skimlinks-unlinked">listrepos.js</span><span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre>
+</div>
+<p>The following code must also go in your<span> </span><span class="skimlinks-unlinked">index.html</span><span> </span>page. It will cause the repositories to load by calling the loadRespositories function in the JavaScript. This code can go pretty much anywhere. I put it just before the ending `<code>&lt;/head&gt;</code><span> </span>tag in<span> </span><span class="skimlinks-unlinked">index.html</span>.</p>
+<div class="highlight highlight-text-html-basic">
+<pre><span class="pl-s1">&lt;<span class="pl-ent">script</span>&gt;</span>
+<span class="pl-s1">    <span class="pl-en">$</span>(<span class="pl-k">function</span>() {</span>
+<span class="pl-s1">        <span class="pl-en">$</span>(<span class="pl-s"><span class="pl-pds">"</span>#my-github-projects<span class="pl-pds">"</span></span>).<span class="pl-en">loadRepositories</span>(<span class="pl-s"><span class="pl-pds">"</span>dave45678<span class="pl-pds">"</span></span>);</span>
+<span class="pl-s1">    });</span>
+<span class="pl-s1">&lt;/<span class="pl-ent">script</span>&gt;</span></pre>
+</div>
+<p>Your index page should now show your repositories. You can browse to it by browsing to<code><a class="external" href="http://username.github.io/" target="_blank"><span>http://username.github.io<span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a></code>.</p>
+<h3>
+<a id="user-content-add-a-gravatar" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#add-a-gravatar" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Add a Gravatar</h3>
+<p>Gravatar is a service for providing globally unique avatars. An avatar is a image that identifies you on blogs and other online sites. Gravatar allows you to create and maintian one image for all your sites. Gravatar works by returning an image for the email address of the user. The email address must be converted to an MD5 hash. An MD5 hash is a 32 character string that uniquely identifies your email address.</p>
+<p>All URLs on Gravatar are based on the use of the hashed value of an email address. The hash identifies your identity within the system. Follow the following steps to ensure a consistent and accurate hash. 1. Trim leading and trailing whitespace from an email address 2. Make all characters lower-case 3. Generate an MD5 hash of the cleaned-up email address</p>
+<p>We’re going to use Gravatar to add an avatar to this page. If you don’t have an account at Gravatar then visit their site (<a class="external" href="http://www.gravatar.com/" target="_blank"><span>http://www.gravatar.com<span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>) and create one now.</p>
+<p>To test your gravatar calculate the MD5 of your email address and browse to<code><a class="external" href="https://www.gravatar.com/HASH" target="_blank"><span>https://www.gravatar.com/HASH<span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a></code><span> </span>where HASH is your MD5 hash. You can use a site such as<code><a class="external" href="http://www.md5hashgenerator.com/" target="_blank"><span>http://www.md5hashgenerator.com/<span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a></code><span> </span>to generate the hash.</p>
+<p>Once you calculate your hash add an image tag to the body of your page. It should look like this:<code>&lt;img id="gravatar" src="http://gravatar.com/avatar/HASH?s=200" alt="YOUR_NAME"/&gt;</code><span> </span>Replace HASH and YOUR_NAME with the MD5 hash and your name. The image tag will display your Gravatar image on<span> </span><span class="skimlinks-unlinked">index.html</span><span> </span>page.</p>
+<h3>
+<a id="user-content-add-bootstrap" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#add-bootstrap" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Add Bootstrap</h3>
+<p>Bootstrap is a free and open-source front-end library for creating websites and web applications. It contains HTML- and CSS-based design templates for typography, forms, buttons, navigation and other interface components, as well as optional JavaScript extensions. It aims to ease the development of dynamic websites and web applications.</p>
+<p>Bootstrap is a front end web framework, that is, an interface for the user. This is different than server-side code like JSPs and servlets which reside on the server or “back end”.</p>
+<p>Bootstrap also supports responsive web design. This means the layout of web pages adjusts dynamically when you are viewing your page on a tablet, phone or desktop.</p>
+<p>To make your page work with Bootstrap add the following code to your<span> </span><span class="skimlinks-unlinked">index.html</span><span> </span>page in the<code>&lt;head&gt;&lt;/head&gt;</code><span> </span>section.<em>Bootstrap requires jQuery</em>. We added that link earlier so it isn’t necessary to add it again.</p>
+<p>When we add links to external sites such as<span> </span><a class="skimlinks-unlinked external" title="" href="https://maxcdn.com/" target="_blank" data-skimwords-word="maxcdn.com" data-skim-creative="500005"><span>maxcdn.com<span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a><span> </span>shown below we are accessing their hosted version of Bootstrap and jQuery. It is also possible to save the linked code to your computer.</p>
+<div class="highlight highlight-text-html-basic">
+<pre><span class="pl-c">&lt;!-- Bootstrap --&gt;</span>
+<span class="pl-c">&lt;!-- Latest compiled and minified CSS --&gt;</span>
+&lt;<span class="pl-ent">link</span> <span class="pl-e">rel</span>=<span class="pl-s"><span class="pl-pds">"</span>stylesheet<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="skimlinks-unlinked">http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css</span><span class="pl-pds">"</span></span>&gt;
+<span class="pl-c">&lt;!-- Latest compiled JavaScript --&gt;</span>
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="skimlinks-unlinked">http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js</span><span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre>
+</div>
+<h4>
+<a id="user-content-add-a-bootstrap-navigation-bar" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#add-a-bootstrap-navigation-bar" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Add a Bootstrap Navigation Bar</h4>
+<p>A navigation bar is a header that placed at the top of the page. A Bootstrap navigation bar can expand or collapse, depending on the screen size. A navigation bar is created with<span> </span><code>&lt;nav class="navbar navbar-default"&gt;</code>.</p>
+<p>Copy the code below to and add it to your page, just below the<span> </span><code>&lt;body&gt;</code><span> </span>tag.</p>
+<div class="highlight highlight-text-html-basic">
+<pre> &lt;<span class="pl-ent">nav</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>navbar navbar-inverse navbar-fixed-top<span class="pl-pds">"</span></span>&gt;
+      &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>container<span class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>navbar-header<span class="pl-pds">"</span></span>&gt;
+          &lt;<span class="pl-ent">button</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>button<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>navbar-toggle collapsed<span class="pl-pds">"</span></span> <span class="pl-e">data-toggle</span>=<span class="pl-s"><span class="pl-pds">"</span>collapse<span class="pl-pds">"</span></span> <span class="pl-e">data-target</span>=<span class="pl-s"><span class="pl-pds">"</span>#navbar<span class="pl-pds">"</span></span> <span class="pl-e">aria-expanded</span>=<span class="pl-s"><span class="pl-pds">"</span>false<span class="pl-pds">"</span></span> <span class="pl-e">aria-controls</span>=<span class="pl-s"><span class="pl-pds">"</span>navbar<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>sr-only<span class="pl-pds">"</span></span>&gt;Toggle navigation&lt;/<span class="pl-ent">span</span>&gt;
+            &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>icon-bar<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+            &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>icon-bar<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+            &lt;<span class="pl-ent">span</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>icon-bar<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">span</span>&gt;
+          &lt;/<span class="pl-ent">button</span>&gt;
+          &lt;<span class="pl-ent">a</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>navbar-brand<span class="pl-pds">"</span></span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>#<span class="pl-pds">"</span></span>&gt;Dave Wolf, PMP&lt;/<span class="pl-ent">a</span>&gt;
+        &lt;/<span class="pl-ent">div</span>&gt;
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>navbar<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>collapse navbar-collapse<span class="pl-pds">"</span></span>&gt;
+          &lt;<span class="pl-ent">ul</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>nav navbar-nav<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">li</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>active<span class="pl-pds">"</span></span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>#<span class="pl-pds">"</span></span>&gt;Home&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>#about<span class="pl-pds">"</span></span>&gt;About&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>#contact<span class="pl-pds">"</span></span>&gt;Contact&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+            &lt;<span class="pl-ent">li</span>&gt;&lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>#github<span class="pl-pds">"</span></span>&gt;Projects&lt;/<span class="pl-ent">a</span>&gt;&lt;/<span class="pl-ent">li</span>&gt;
+          &lt;/<span class="pl-ent">ul</span>&gt;
+        &lt;/<span class="pl-ent">div</span>&gt;<span class="pl-c">&lt;!--/.nav-collapse --&gt;</span>
+      &lt;/<span class="pl-ent">div</span>&gt;
+    &lt;/<span class="pl-ent">nav</span>&gt;</pre>
+</div>
+<p>The navigation bar above will allow you to jump to whatever page is listed in the href attributes. I have it set to go to #about, #contact and #github. There are locations within the current page. To create a location add the following tag for each location. Your locations may vary.</p>
+<p>I added the following code below the image.</p>
+<div class="highlight highlight-text-html-basic">
+<pre>&lt;<span class="pl-ent">p</span>/&gt;    
+    &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span>github<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">a</span>&gt;&lt;<span class="pl-ent">h1</span>&gt;My GitHub Projects&lt;/<span class="pl-ent">h1</span>&gt;  
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>my-github-projects<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;</pre>
+</div>
+<h3>
+<a id="user-content-add-a-link-to-linkedin-or-your-blog-etc" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#add-a-link-to-linkedin-or-your-blog-etc" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Add a link to LinkedIn (or your blog, etc)</h3>
+<p>Professionals all over the world use LinkedIn to manage their professional identity and develop their professional network. You should do the same. If you don’t have a linkedIn account then you should create one now. If you’d rather link to a blog or other website that’s fine, too.</p>
+<p>Creating a link that opens in a new window is as simple as adding an anchor tag to your web page. I added mine just below the image but above the github link. I used paragraph tags to ensure my link is on its own line.</p>
+<div class="highlight highlight-text-html-basic">
+<pre>    &lt;<span class="pl-ent">p</span>/&gt;
+    &lt;<span class="pl-ent">a</span> <span class="pl-e">href</span>=<span class="pl-s"><span class="pl-pds">"</span><span class="skimlinks-unlinked">https://www.linkedin.com/in/djwolf</span><span class="pl-pds">"</span></span> <span class="pl-e">target</span>=<span class="pl-s"><span class="pl-pds">"</span>_blank<span class="pl-pds">"</span></span>&gt;Resume (New Window)&lt;/<span class="pl-ent">a</span>&gt;
+    &lt;<span class="pl-ent">p</span>/&gt;</pre>
+</div>
+<h3>
+<a id="user-content-check-out-your-page" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#check-out-your-page" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Check out your page</h3>
+<p>Congratulations on making it this far. Take a moment to browse to your page and check it out. You can then send the link to your friends and let them know how smart you are. The url for your site is<span> </span><code><a class="external" href="http://your_name.github.io/" target="_blank"><span>http://YOUR_NAME.github.io<span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a></code>.</p>
+<h3>
+<a id="user-content-setting-up-a-custom-domain" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#setting-up-a-custom-domain" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Setting up a custom domain</h3>
+<p>You can set up a custom url in for your GitHub Pages site. First you need to register the custom domain with a DNS provider. And then you need to configure your domain with your DNS provider.</p>
+<h3>
+<a id="user-content-register-a-domain" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#register-a-domain" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Register a domain</h3>
+<p>A domain name allows you to create a customized url for your GitHub resume. Getting a domain name involves registering the name with an organization called ICANN. You register through a domain name registrar. I recommend<span> </span><strong><span class="skimlinks-unlinked">hover.com</span></strong>. Once you choose a name you need to go to the<span class="skimlinks-unlinked">hover.com</span><span> </span>and pay a registration fee that runs from $10 to $35 for most domain names.</p>
+<h3>
+<a id="user-content-configure-your-dns" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#configure-your-dns" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Configure your DNS</h3>
+<p>You can set up a URL redirect to forward your domain to any destination page of your choice. When you set up a URL redirect for a domain, it may be 30 minutes before the redirect works .</p>
+<h3>
+<a id="user-content-add-a-cname-file" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#add-a-cname-file" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Add a CNAME file</h3>
+<p>Create a text file called<span> </span><code>CNAME</code><span> </span>in your GitHub pages site. It should contain one line.. your domain. This file is necessary for the DNS to redirect to your site.</p>
+<h4>
+<a id="user-content-add-the-rest-of-your-resume" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#add-the-rest-of-your-resume" target="_blank"><span><span class="screenreader-only"> (Links to an external site.)</span></span><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only">Links to an external site.</span></span></a>Add the rest of your resume</h4>
+<p>Add additonal information about your career. This might include work history and contact infomation. You can even add more projects that you aren’t in GitHub.</p>
+<h3>
+<a id="user-content-conclusion" class="anchor external" href="https://github.com/dave45678/DaveWolf/blob/gh-pages/book.md#conclusion" target="_blank"><span class="ui-icon ui-icon-extlink ui-icon-inline" title="Links to an external site."><span class="screenreader-only"></span></span></a>Conclusion</h3>
+<p>As you continue to add projects to GitHub they will show on your resume page if you fill in the description. You could modify the code to change that feature of add others. This version of your resume will always be up-to-date. In upcomping posts I’ll show you how to get information from a Google spreadsheet and display it on your resume. And I’ll show you how to use GitHub pages as a free blog.</p>
+</body>
+</html>

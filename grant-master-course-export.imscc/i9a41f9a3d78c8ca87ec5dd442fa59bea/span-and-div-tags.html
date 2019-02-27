@@ -1,0 +1,36 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: SPAN and DIV Tags</title>
+</head>
+<body>
+<h1 class="page-title">Span and Div</h1>
+<ul>
+<li><span>The &lt;span&gt; tag is used to group inline-elements in a document.</span></li>
+<li><span>The &lt;span&gt; tag provides no visual change by itself.</span></li>
+<li><span>The &lt;span&gt; tag provides a way to add a hook to a part of a text or a part of a document.</span></li>
+</ul>
+<p>&lt;span style="color:blue;font-weight:bold"&gt;blue&lt;/span&gt;</p>
+<ul>
+<li><span>The &lt;div&gt; tag defines a division or a section in an HTML document.</span></li>
+<li><span>The &lt;div&gt; tag is used to group block-elements to format them with CSS.</span></li>
+</ul>
+<p><span class="highLT">&lt;</span><span class="highELE">div</span><span> </span><span class="highATT">style=</span><span class="highVAL">"color:#0000FF"</span><span class="highGT">&gt;</span><br><span>  </span><span class="highLT">&lt;</span><span class="highELE">h3</span><span class="highGT">&gt;</span><span>This is a heading</span><span class="highLT">&lt;</span><span class="highELE">/h3</span><span class="highGT">&gt;</span><br><span>  </span><span class="highLT">&lt;</span><span class="highELE">p</span><span class="highGT">&gt;</span><span>This is a paragraph.</span><span class="highLT">&lt;</span><span class="highELE">/p</span><span class="highGT">&gt;</span><br><span class="highLT">&lt;</span><span class="highELE">/div</span><span class="highGT">&gt;</span></p>
+<p>The &lt;span&gt; and &lt;div&gt; tags have no required attributes, but the three that are the most useful are:</p>
+<ul>
+<li><span>style</span></li>
+<li>class</li>
+<li>id</li>
+</ul>
+<p><span class="highGT">You can make a &lt;span&gt; or &lt;div&gt; point to a style sheet using id or class.</span></p>
+<p><code>ids</code><span> </span>must be unique where as<span> </span><code>class</code><span> </span>can be applied to many things. In CSS,<span> </span><code>id</code>s look like<span> </span><code>#elementID</code><span> </span>and<span> </span><code>class</code><span> </span>elements look like<span> </span><code>.someClass</code></p>
+<p>In general, use<span> </span><code>id</code><span> </span>whenever you want to refer to a specific element and<span> </span><code>class</code><span> </span>when you have a number of things that are all alike. For instance, common<span> </span><code>id</code><span> </span>elements are things like<span> </span><code>header</code>,<span> </span><code>footer</code>,<span> </span><code>sidebar</code>. Common<span> </span><code>class</code><span> </span>elements are things like<span> </span><code>highlight</code><span> </span>or<span> </span><code>external-link</code>.</p>
+<p class="default prettyprint prettyprinted"><code><span class="tag">&lt;p</span><span class="pln"><span> </span></span><span class="atn">id</span><span class="pun">=</span><span class="atv">"intro"</span><span class="pln"><span> </span></span><span class="atn">class</span><span class="pun">=</span><span class="atv">"foo"</span><span class="tag">&gt;</span><span class="pln">Hello!</span><span class="tag">&lt;/p&gt;</span></code></p>
+<p> </p>
+<p><code><span class="tag">would have a matching entry in the .css file for<span> </span><br></span></code></p>
+<p class="default prettyprint prettyprinted"> </p>
+<pre class="lang-css prettyprint prettyprinted"><code><span class="pun">#</span><span class="pln">intro </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> red </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">.</span><span class="pln">foo </span><span class="pun">{</span><span class="pln"> </span><span class="kwd">color</span><span class="pun">:</span><span class="pln"> blue </span><span class="pun">}</span></code></pre>
+<pre class="default prettyprint prettyprinted"><code><span class="tag"> </span></code></pre>
+</body>
+</html>

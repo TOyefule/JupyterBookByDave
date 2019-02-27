@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="if7b77769c924a99e6a5f1c904e6830ad" xmlns="http://www.imsglobal.org/xsd/imsccv1p1/imscp_v1p1" xmlns:lom="http://ltsc.ieee.org/xsd/imsccv1p1/LOM/resource" xmlns:lomimscc="http://ltsc.ieee.org/xsd/imsccv1p1/LOM/manifest" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsccv1p1/imscp_v1p1 http://www.imsglobal.org/profile/cc/ccv1p1/ccv1p1_imscp_v1p2_v1p0.xsd http://ltsc.ieee.org/xsd/imsccv1p1/LOM/resource http://www.imsglobal.org/profile/cc/ccv1p1/LOM/ccv1p1_lomresource_v1p0.xsd http://ltsc.ieee.org/xsd/imsccv1p1/LOM/manifest http://www.imsglobal.org/profile/cc/ccv1p1/LOM/ccv1p1_lommanifest_v1p0.xsd">
+  <metadata>
+    <schema>IMS Common Cartridge</schema>
+    <schemaversion>1.1.0</schemaversion>
+    <lomimscc:lom>
+      <lomimscc:general>
+        <lomimscc:title>
+          <lomimscc:string>Grant Master Course</lomimscc:string>
+        </lomimscc:title>
+      </lomimscc:general>
+      <lomimscc:lifeCycle>
+        <lomimscc:contribute>
+          <lomimscc:date>
+            <lomimscc:dateTime>2019-02-01</lomimscc:dateTime>
+          </lomimscc:date>
+        </lomimscc:contribute>
+      </lomimscc:lifeCycle>
+      <lomimscc:rights>
+        <lomimscc:copyrightAndOtherRestrictions>
+          <lomimscc:value>yes</lomimscc:value>
+        </lomimscc:copyrightAndOtherRestrictions>
+        <lomimscc:description>
+          <lomimscc:string>Private (Copyrighted) - http://en.wikipedia.org/wiki/Copyright</lomimscc:string>
+        </lomimscc:description>
+      </lomimscc:rights>
+    </lomimscc:lom>
+  </metadata>
+  <organizations>
+    <organization identifier="org_1" structure="rooted-hierarchy">
+      <item identifier="LearningModules">
+        <item identifier="i954c5dce43d920e28d0848dac26bd688">
+          <title>Intro to HTML</title>
+          <item identifier="i6c8de15194fceb085e69eae0ed307284" identifierref="iff298a3f008cfa17b4596bf6756a92d2">
+            <title>HTML Resources</title>
+          </item>
+          <item identifier="i74c35059e73ec877bb84ef947284b296" identifierref="i09124a71ae1899bc96e0b6c80ce0c140">
+            <title>A Little Bit of HTML and CSS</title>
+          </item>
+          <item identifier="ic0dc814f20562ca6b61ed4bf3b5637b7" identifierref="i187c154d1d9f1dd91d46fb107365012a">
+            <title>A Basic Web Page</title>
+          </item>
+          <item identifier="idea5c8719a2663360e54997eb8ca80ff" identifierref="if396f02642d988b6cbbbf05c4bdc24f5">
+            <title>HTML Elements, Attributes and Whitespace</title>
+          </item>
+          <item identifier="i3bd5a9e10379275273ea94466ac297e1" identifierref="iaf3b0bbc4311b0a6231a709c75360d6b">
+            <title>Example of a Valid HTML Page</title>
+          </item>
+          <item identifier="i5098fd59cdd57917eedc40f73bb0f4e0" identifierref="i40005fd3eeb7d069d489166e5bd6f26f">
+            <title>Adding Comments, Displaying Hyperlinks, Images and Linked Images</title>
+          </item>
+          <item identifier="if2315241364450fa76f27220b652c851" identifierref="if086c1040185356b7af7cb3b7659a733">
+            <title>A Crabby Web Page</title>
+          </item>
+          <item identifier="i44f64861248d175e22da223b298def2d" identifierref="i30906144bb2181bb440215e2b1ebd7a3">
+            <title>Create an HTML Form that does Nothing</title>
+          </item>
+          <item identifier="if9baa98515fe38c2a47ef409c2472715" identifierref="i0834ddadfe691e21e5dac2291e5c72e1">
+            <title>Create an HTML Table</title>
+          </item>
+          <item identifier="i08102c1ecdc27f9fe787c79060da4dc3" identifierref="i9a41f9a3d78c8ca87ec5dd442fa59bea">
+            <title>SPAN and DIV Tags</title>
+          </item>
+        </item>
+        <item identifier="i52b70b4973dc7ed80549073aa1959190">
+          <title>JavaScript</title>
+          <item identifier="if136297e26774dbc428e2aa193a54cad" identifierref="i222e770e5b577208afa5f6d712ca08a3">
+            <title>JavaScript Resources</title>
+          </item>
+          <item identifier="i55080469842dac644caae629ba1baca2" identifierref="i6b5d34f3f409200fc72390daf6c508be">
+            <title>What is JavaScript?</title>
+          </item>
+          <item identifier="ibcd5c0973749e119dcacd59bba428991" identifierref="i64c507e188981669108e8e059ce40403">
+            <title>What Can JavaScript Do?</title>
+          </item>
+          <item identifier="i7057cb738bf632765aaa58748e4e9a5a" identifierref="i133eaaed053b9000ced1dfe4cc335065">
+            <title>The Structure of a JavaScript Program</title>
+          </item>
+          <item identifier="i0ca55d3e7f5320453881387e379fd441" identifierref="i4d0fb92cd14d4d83d14c68eec1e8af51">
+            <title>Creating a JavaScript Web Application with IntelliJ</title>
+          </item>
+          <item identifier="i12a1349fd5f93027ffbf16e593d764d6" identifierref="ic153ff9293cea7890733045ad3399110">
+            <title>Your First JavaScript Program</title>
+          </item>
+          <item identifier="i7c0b74d89872bd5f866575a7cfeeb628" identifierref="i33409ccceaa8466a35eac06f9fa352cd">
+            <title>Where to Place JavaScript Code</title>
+          </item>
+          <item identifier="icac49fe8fc0795d4e2efc2634581b6bb" identifierref="i8e5ae6731f7eff9328297a97a3a011b7">
+            <title>Making Decisions in JavaScript</title>
+          </item>
+          <item identifier="i99e3ee376823d2456df481fd248987a5" identifierref="i81df4603df279c60484af73d8c779756">
+            <title>Repeating Code with JavaScript Loops</title>
+          </item>
+          <item identifier="i2c245d878ff62c401439992c2ea88169" identifierref="ic183bac8d9325d6275151bf56fe86247">
+            <title>Guessing Game</title>
+          </item>
+          <item identifier="i5c195a2a822c1919e5ee02f577a416d8" identifierref="iad34bd155460d5d222296d030f75104d">
+            <title>Create FizzBuzz</title>
+          </item>
+          <item identifier="i300c3a6fb5302d99031d5101fedee46e" identifierref="i48a2d7b3c422fcb26d4e9cbf08bb4568">
+            <title>A Simple Input/Output HTML Page</title>
+          </item>
+          <item identifier="icd1c477433d3ae1b3e91b8daec831082" identifierref="ia519eefcef17dddeffe103e3919bb99a">
+            <title>Interacting with the User</title>
+          </item>
+          <item identifier="i14841aa13b46fcb214721764d127b511" identifierref="idc0b6f00fff5a234a741aced7060e7b2">
+            <title>Movie List (Arrays)</title>
+          </item>
+          <item identifier="id1581572e7b489c20742df20e27c80a9" identifierref="if533571d78d1a33f5721f3d0d3623269">
+            <title>Variables and Data Types</title>
+          </item>
+          <item identifier="i40eaffdbaae8ef65a7aea5e45e7be79e" identifierref="ic9adca29e0ac2e8a61a657eca9d31844">
+            <title>Creating Functions</title>
+          </item>
+          <item identifier="i8d2b977ce73783399b44f669ab08ccf1" identifierref="id06970c9bcc87b1e29f494ceaf545be9">
+            <title>Create a To Do List </title>
+          </item>
+          <item identifier="i65a409b7023e68e1925e062a58f77d09" identifierref="i6e54bf19aa092cd7af4c1da301ff6855">
+            <title>Explore the DOM</title>
+          </item>
+          <item identifier="ifc3d35d43a8f1e9b5f7ecc1190f8b4cf" identifierref="if95d4037f6e528d5292354eea99ce872">
+            <title>Change the DOM</title>
+          </item>
+          <item identifier="i42794733da29d7639aa50cd5dcf0062a" identifierref="i85b997b8982f451911b4347aa492c350">
+            <title>Debugging your program</title>
+          </item>
+          <item identifier="ic5e69763785b6496bf1c5d4ccd7e6bc3" identifierref="i6ad9c7a2e6dcab2ceea8430334de8370">
+            <title>Hide the Contents of a DIV</title>
+          </item>
+          <item identifier="if37d6e7dff251b815c8d08dcf7366198" identifierref="i93df260beab7993f81b7f6e3a1e30725">
+            <title>Attributes</title>
+          </item>
+          <item identifier="i46a8c306dff8abe53eb308a3f905059e" identifierref="i871d8ccf1665794a75ca6d13134a233f">
+            <title>Use JavaScript to Modify an HTML Table</title>
+          </item>
+          <item identifier="if6c855bfab1d8b7ac9899faa2a9a1ae4" identifierref="i7ba50913624a87403cc871223d23c241">
+            <title>Getting Data From HTML Forms</title>
+          </item>
+          <item identifier="i9a65b99c55a57e9ceac37632141b7fc2" identifierref="i1e0d384ca279fbec9fdddb82608e796c">
+            <title>Create a Sales Tax Calculator</title>
+          </item>
+          <item identifier="i5caffd164755636195f57606bd792ad7" identifierref="i24df2b8a8f33590e53e8d755d4620e15">
+            <title>Chrome Developer Tools</title>
+          </item>
+          <item identifier="i1bd522e7b32338c7d25068cc874b5b0b" identifierref="i904ec29b6055eab39a8e6e6080d63862">
+            <title>Introduction to JavaScript Quiz I</title>
+          </item>
+          <item identifier="i3459b5c56c65ea676ad6de64aaf93b6e" identifierref="ie607be35f60a8edb41a0971f0ed7980f">
+            <title>Introduction to JavaScript Quiz II</title>
+          </item>
+          <item identifier="i49a7738eb389f3c37feb313bbd85accf" identifierref="i5147472835f4c3e281d3c140cf80ab1b">
+            <title>Build an HTML Calculator App</title>
+          </item>
+          <item identifier="ib533be304be905a168f3627e823f25ec" identifierref="i3ca70c7098d5b2b6d18e863f81664135">
+            <title>Handling Errors</title>
+          </item>
+          <item identifier="i63a2ab5c567571b9b5728b402923b3ed" identifierref="ia07488bcaf20f02ae72a075bba8be351">
+            <title>Use JavaScript to Validate the Username (as email) and Password</title>
+          </item>
+          <item identifier="ia0bc7f36217ddbb8df53ed2b8b1a09dc" identifierref="i9f00952003c87a0f50dbb718c833b977">
+            <title>Create a JavaScript version of Zork</title>
+          </item>
+          <item identifier="i0fb5f4a1a7b37f2647e47587e1d27ff7" identifierref="i6768a7fb45497184c476f56a9e9895a0">
+            <title>Create a JavaScript Temperature Converter</title>
+          </item>
+          <item identifier="i6beae16d758ec5a30a4ed90315299324" identifierref="ia3fe4d1f3eb27fe8be5cde8b9860a149">
+            <title>Restricting the Length of a Password</title>
+          </item>
+          <item identifier="id4e363eb1263eab07bd306c406c1657b" identifierref="ie6f45b24f14289b948ee8c7eda02490e">
+            <title>Create a GitHub Resume</title>
+          </item>
+        </item>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="i20b517ee57d6637ecbeefebfea381830" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="course_settings/canvas_export.txt">
+      <file href="course_settings/course_settings.xml"/>
+      <file href="course_settings/module_meta.xml"/>
+      <file href="course_settings/assignment_groups.xml"/>
+      <file href="course_settings/files_meta.xml"/>
+      <file href="course_settings/media_tracks.xml"/>
+      <file href="course_settings/canvas_export.txt"/>
+    </resource>
+    <resource identifier="i222e770e5b577208afa5f6d712ca08a3" type="webcontent" href="wiki_content/javascript-resources.html">
+      <file href="wiki_content/javascript-resources.html"/>
+    </resource>
+    <resource identifier="iff298a3f008cfa17b4596bf6756a92d2" type="webcontent" href="wiki_content/html-resources.html">
+      <file href="wiki_content/html-resources.html"/>
+    </resource>
+    <resource identifier="i187c154d1d9f1dd91d46fb107365012a" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i187c154d1d9f1dd91d46fb107365012a/a-basic-web-page.html">
+      <file href="i187c154d1d9f1dd91d46fb107365012a/a-basic-web-page.html"/>
+      <file href="i187c154d1d9f1dd91d46fb107365012a/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="if086c1040185356b7af7cb3b7659a733" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="if086c1040185356b7af7cb3b7659a733/a-crabby-web-page.html">
+      <file href="if086c1040185356b7af7cb3b7659a733/a-crabby-web-page.html"/>
+      <file href="if086c1040185356b7af7cb3b7659a733/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i40005fd3eeb7d069d489166e5bd6f26f" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i40005fd3eeb7d069d489166e5bd6f26f/adding-comments-displaying-hyperlinks-images-and-linked-images.html">
+      <file href="i40005fd3eeb7d069d489166e5bd6f26f/adding-comments-displaying-hyperlinks-images-and-linked-images.html"/>
+      <file href="i40005fd3eeb7d069d489166e5bd6f26f/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i09124a71ae1899bc96e0b6c80ce0c140" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i09124a71ae1899bc96e0b6c80ce0c140/a-little-bit-of-html-and-css.html">
+      <file href="i09124a71ae1899bc96e0b6c80ce0c140/a-little-bit-of-html-and-css.html"/>
+      <file href="i09124a71ae1899bc96e0b6c80ce0c140/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i48a2d7b3c422fcb26d4e9cbf08bb4568" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i48a2d7b3c422fcb26d4e9cbf08bb4568/a-simple-input-slash-output-html-page.html">
+      <file href="i48a2d7b3c422fcb26d4e9cbf08bb4568/a-simple-input-slash-output-html-page.html"/>
+      <file href="i48a2d7b3c422fcb26d4e9cbf08bb4568/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i93df260beab7993f81b7f6e3a1e30725" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i93df260beab7993f81b7f6e3a1e30725/attributes.html">
+      <file href="i93df260beab7993f81b7f6e3a1e30725/attributes.html"/>
+      <file href="i93df260beab7993f81b7f6e3a1e30725/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i5147472835f4c3e281d3c140cf80ab1b" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i5147472835f4c3e281d3c140cf80ab1b/build-an-html-calculator-app.html">
+      <file href="i5147472835f4c3e281d3c140cf80ab1b/build-an-html-calculator-app.html"/>
+      <file href="i5147472835f4c3e281d3c140cf80ab1b/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="if95d4037f6e528d5292354eea99ce872" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="if95d4037f6e528d5292354eea99ce872/change-the-dom.html">
+      <file href="if95d4037f6e528d5292354eea99ce872/change-the-dom.html"/>
+      <file href="if95d4037f6e528d5292354eea99ce872/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i24df2b8a8f33590e53e8d755d4620e15" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i24df2b8a8f33590e53e8d755d4620e15/chrome-developer-tools.html">
+      <file href="i24df2b8a8f33590e53e8d755d4620e15/chrome-developer-tools.html"/>
+      <file href="i24df2b8a8f33590e53e8d755d4620e15/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="ie6f45b24f14289b948ee8c7eda02490e" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="ie6f45b24f14289b948ee8c7eda02490e/create-a-github-resume.html">
+      <file href="ie6f45b24f14289b948ee8c7eda02490e/create-a-github-resume.html"/>
+      <file href="ie6f45b24f14289b948ee8c7eda02490e/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i6768a7fb45497184c476f56a9e9895a0" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i6768a7fb45497184c476f56a9e9895a0/create-a-javascript-temperature-converter.html">
+      <file href="i6768a7fb45497184c476f56a9e9895a0/create-a-javascript-temperature-converter.html"/>
+      <file href="i6768a7fb45497184c476f56a9e9895a0/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i9f00952003c87a0f50dbb718c833b977" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i9f00952003c87a0f50dbb718c833b977/create-a-javascript-version-of-zork.html">
+      <file href="i9f00952003c87a0f50dbb718c833b977/create-a-javascript-version-of-zork.html"/>
+      <file href="i9f00952003c87a0f50dbb718c833b977/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i30906144bb2181bb440215e2b1ebd7a3" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i30906144bb2181bb440215e2b1ebd7a3/create-an-html-form-that-does-nothing.html">
+      <file href="i30906144bb2181bb440215e2b1ebd7a3/create-an-html-form-that-does-nothing.html"/>
+      <file href="i30906144bb2181bb440215e2b1ebd7a3/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i0834ddadfe691e21e5dac2291e5c72e1" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i0834ddadfe691e21e5dac2291e5c72e1/create-an-html-table.html">
+      <file href="i0834ddadfe691e21e5dac2291e5c72e1/create-an-html-table.html"/>
+      <file href="i0834ddadfe691e21e5dac2291e5c72e1/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i1e0d384ca279fbec9fdddb82608e796c" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i1e0d384ca279fbec9fdddb82608e796c/create-a-sales-tax-calculator.html">
+      <file href="i1e0d384ca279fbec9fdddb82608e796c/create-a-sales-tax-calculator.html"/>
+      <file href="i1e0d384ca279fbec9fdddb82608e796c/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="id06970c9bcc87b1e29f494ceaf545be9" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="id06970c9bcc87b1e29f494ceaf545be9/create-a-to-do-list.html">
+      <file href="id06970c9bcc87b1e29f494ceaf545be9/create-a-to-do-list.html"/>
+      <file href="id06970c9bcc87b1e29f494ceaf545be9/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="iad34bd155460d5d222296d030f75104d" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="iad34bd155460d5d222296d030f75104d/create-fizzbuzz.html">
+      <file href="iad34bd155460d5d222296d030f75104d/create-fizzbuzz.html"/>
+      <file href="iad34bd155460d5d222296d030f75104d/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i4d0fb92cd14d4d83d14c68eec1e8af51" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i4d0fb92cd14d4d83d14c68eec1e8af51/creating-a-javascript-web-application-with-intellij.html">
+      <file href="i4d0fb92cd14d4d83d14c68eec1e8af51/creating-a-javascript-web-application-with-intellij.html"/>
+      <file href="i4d0fb92cd14d4d83d14c68eec1e8af51/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="ic9adca29e0ac2e8a61a657eca9d31844" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="ic9adca29e0ac2e8a61a657eca9d31844/creating-functions.html">
+      <file href="ic9adca29e0ac2e8a61a657eca9d31844/creating-functions.html"/>
+      <file href="ic9adca29e0ac2e8a61a657eca9d31844/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i85b997b8982f451911b4347aa492c350" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i85b997b8982f451911b4347aa492c350/debugging-your-program.html">
+      <file href="i85b997b8982f451911b4347aa492c350/debugging-your-program.html"/>
+      <file href="i85b997b8982f451911b4347aa492c350/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="ib74b1b3976f8e111c6367007ad0e56dd" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="ib74b1b3976f8e111c6367007ad0e56dd/delejavascript-resources.html">
+      <file href="ib74b1b3976f8e111c6367007ad0e56dd/delejavascript-resources.html"/>
+      <file href="ib74b1b3976f8e111c6367007ad0e56dd/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="iaf3b0bbc4311b0a6231a709c75360d6b" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="iaf3b0bbc4311b0a6231a709c75360d6b/example-of-a-valid-html-page.html">
+      <file href="iaf3b0bbc4311b0a6231a709c75360d6b/example-of-a-valid-html-page.html"/>
+      <file href="iaf3b0bbc4311b0a6231a709c75360d6b/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i6e54bf19aa092cd7af4c1da301ff6855" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i6e54bf19aa092cd7af4c1da301ff6855/explore-the-dom.html">
+      <file href="i6e54bf19aa092cd7af4c1da301ff6855/explore-the-dom.html"/>
+      <file href="i6e54bf19aa092cd7af4c1da301ff6855/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i7ba50913624a87403cc871223d23c241" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i7ba50913624a87403cc871223d23c241/getting-data-from-html-forms.html">
+      <file href="i7ba50913624a87403cc871223d23c241/getting-data-from-html-forms.html"/>
+      <file href="i7ba50913624a87403cc871223d23c241/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="ic183bac8d9325d6275151bf56fe86247" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="ic183bac8d9325d6275151bf56fe86247/guessing-game.html">
+      <file href="ic183bac8d9325d6275151bf56fe86247/guessing-game.html"/>
+      <file href="ic183bac8d9325d6275151bf56fe86247/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i3ca70c7098d5b2b6d18e863f81664135" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i3ca70c7098d5b2b6d18e863f81664135/handling-errors.html">
+      <file href="i3ca70c7098d5b2b6d18e863f81664135/handling-errors.html"/>
+      <file href="i3ca70c7098d5b2b6d18e863f81664135/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i6ad9c7a2e6dcab2ceea8430334de8370" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i6ad9c7a2e6dcab2ceea8430334de8370/hide-the-contents-of-a-div.html">
+      <file href="i6ad9c7a2e6dcab2ceea8430334de8370/hide-the-contents-of-a-div.html"/>
+      <file href="i6ad9c7a2e6dcab2ceea8430334de8370/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="if396f02642d988b6cbbbf05c4bdc24f5" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="if396f02642d988b6cbbbf05c4bdc24f5/html-elements-attributes-and-whitespace.html">
+      <file href="if396f02642d988b6cbbbf05c4bdc24f5/html-elements-attributes-and-whitespace.html"/>
+      <file href="if396f02642d988b6cbbbf05c4bdc24f5/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="ia519eefcef17dddeffe103e3919bb99a" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="ia519eefcef17dddeffe103e3919bb99a/interacting-with-the-user.html">
+      <file href="ia519eefcef17dddeffe103e3919bb99a/interacting-with-the-user.html"/>
+      <file href="ia519eefcef17dddeffe103e3919bb99a/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i8e5ae6731f7eff9328297a97a3a011b7" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i8e5ae6731f7eff9328297a97a3a011b7/making-decisions-in-javascript.html">
+      <file href="i8e5ae6731f7eff9328297a97a3a011b7/making-decisions-in-javascript.html"/>
+      <file href="i8e5ae6731f7eff9328297a97a3a011b7/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="idc0b6f00fff5a234a741aced7060e7b2" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="idc0b6f00fff5a234a741aced7060e7b2/movie-list-arrays.html">
+      <file href="idc0b6f00fff5a234a741aced7060e7b2/movie-list-arrays.html"/>
+      <file href="idc0b6f00fff5a234a741aced7060e7b2/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i81df4603df279c60484af73d8c779756" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i81df4603df279c60484af73d8c779756/repeating-code-with-javascript-loops.html">
+      <file href="i81df4603df279c60484af73d8c779756/repeating-code-with-javascript-loops.html"/>
+      <file href="i81df4603df279c60484af73d8c779756/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="ia3fe4d1f3eb27fe8be5cde8b9860a149" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="ia3fe4d1f3eb27fe8be5cde8b9860a149/restricting-the-length-of-a-password.html">
+      <file href="ia3fe4d1f3eb27fe8be5cde8b9860a149/restricting-the-length-of-a-password.html"/>
+      <file href="ia3fe4d1f3eb27fe8be5cde8b9860a149/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i9a41f9a3d78c8ca87ec5dd442fa59bea" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i9a41f9a3d78c8ca87ec5dd442fa59bea/span-and-div-tags.html">
+      <file href="i9a41f9a3d78c8ca87ec5dd442fa59bea/span-and-div-tags.html"/>
+      <file href="i9a41f9a3d78c8ca87ec5dd442fa59bea/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i133eaaed053b9000ced1dfe4cc335065" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i133eaaed053b9000ced1dfe4cc335065/the-structure-of-a-javascript-program.html">
+      <file href="i133eaaed053b9000ced1dfe4cc335065/the-structure-of-a-javascript-program.html"/>
+      <file href="i133eaaed053b9000ced1dfe4cc335065/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i871d8ccf1665794a75ca6d13134a233f" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i871d8ccf1665794a75ca6d13134a233f/use-javascript-to-modify-an-html-table.html">
+      <file href="i871d8ccf1665794a75ca6d13134a233f/use-javascript-to-modify-an-html-table.html"/>
+      <file href="i871d8ccf1665794a75ca6d13134a233f/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="ia07488bcaf20f02ae72a075bba8be351" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="ia07488bcaf20f02ae72a075bba8be351/use-javascript-to-validate-the-username-as-email-and-password.html">
+      <file href="ia07488bcaf20f02ae72a075bba8be351/use-javascript-to-validate-the-username-as-email-and-password.html"/>
+      <file href="ia07488bcaf20f02ae72a075bba8be351/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="if533571d78d1a33f5721f3d0d3623269" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="if533571d78d1a33f5721f3d0d3623269/variables-and-data-types.html">
+      <file href="if533571d78d1a33f5721f3d0d3623269/variables-and-data-types.html"/>
+      <file href="if533571d78d1a33f5721f3d0d3623269/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i64c507e188981669108e8e059ce40403" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i64c507e188981669108e8e059ce40403/what-can-javascript-do.html">
+      <file href="i64c507e188981669108e8e059ce40403/what-can-javascript-do.html"/>
+      <file href="i64c507e188981669108e8e059ce40403/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i6b5d34f3f409200fc72390daf6c508be" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i6b5d34f3f409200fc72390daf6c508be/what-is-javascript.html">
+      <file href="i6b5d34f3f409200fc72390daf6c508be/what-is-javascript.html"/>
+      <file href="i6b5d34f3f409200fc72390daf6c508be/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i33409ccceaa8466a35eac06f9fa352cd" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i33409ccceaa8466a35eac06f9fa352cd/where-to-place-javascript-code.html">
+      <file href="i33409ccceaa8466a35eac06f9fa352cd/where-to-place-javascript-code.html"/>
+      <file href="i33409ccceaa8466a35eac06f9fa352cd/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="ic153ff9293cea7890733045ad3399110" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="ic153ff9293cea7890733045ad3399110/your-first-javascript-program.html">
+      <file href="ic153ff9293cea7890733045ad3399110/your-first-javascript-program.html"/>
+      <file href="ic153ff9293cea7890733045ad3399110/assignment_settings.xml"/>
+    </resource>
+    <resource identifier="i904ec29b6055eab39a8e6e6080d63862" type="imsqti_xmlv1p2/imscc_xmlv1p1/assessment">
+      <file href="i904ec29b6055eab39a8e6e6080d63862/assessment_qti.xml"/>
+      <dependency identifierref="i2bec0c7e51ef0bc66843e7e79ac03847"/>
+    </resource>
+    <resource identifier="i2bec0c7e51ef0bc66843e7e79ac03847" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="i904ec29b6055eab39a8e6e6080d63862/assessment_meta.xml">
+      <file href="i904ec29b6055eab39a8e6e6080d63862/assessment_meta.xml"/>
+      <file href="non_cc_assessments/i904ec29b6055eab39a8e6e6080d63862.xml.qti"/>
+    </resource>
+    <resource identifier="ie607be35f60a8edb41a0971f0ed7980f" type="imsqti_xmlv1p2/imscc_xmlv1p1/assessment">
+      <file href="ie607be35f60a8edb41a0971f0ed7980f/assessment_qti.xml"/>
+      <dependency identifierref="i8573976008c62e0b0ccd7c65cf7b57cf"/>
+    </resource>
+    <resource identifier="i8573976008c62e0b0ccd7c65cf7b57cf" type="associatedcontent/imscc_xmlv1p1/learning-application-resource" href="ie607be35f60a8edb41a0971f0ed7980f/assessment_meta.xml">
+      <file href="ie607be35f60a8edb41a0971f0ed7980f/assessment_meta.xml"/>
+      <file href="non_cc_assessments/ie607be35f60a8edb41a0971f0ed7980f.xml.qti"/>
+    </resource>
+  </resources>
+</manifest>

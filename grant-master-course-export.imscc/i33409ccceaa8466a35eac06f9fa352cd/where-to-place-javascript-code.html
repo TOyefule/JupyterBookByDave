@@ -1,0 +1,32 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Where to Place JavaScript Code</title>
+</head>
+<body>
+<p>In order for JavaScript to execute in the browser it must be found in one of three locations.</p>
+<p><strong>Between &lt;script&gt; tags within the HTML document.</strong></p>
+<p>You can place any number of scripts in an HTML document. Scripts can be placed in the &lt;body&gt;, or in the &lt;head&gt; section of an HTML page, or in both. Placing scripts at the bottom of the &lt;body&gt; element improves the display speed, because script compilation slows down the display.</p>
+<p><strong>As a separate file. </strong></p>
+<p>The script tags do not need to be included in the file. However a link to the file must be included in the web page. </p>
+<pre><span style="text-decoration: underline;">myScript.js</span><br><br><span>function</span><span> myFunction() {</span><br><span></span><span> document.</span><span>getElementById</span><span>(</span><span>"demo"</span><span>).</span><span>innerHTML</span><span> = </span><span>"Paragraph changed."</span><span>;</span><br><span></span><span>}</span></pre>
+<p>You can place an external script reference in &lt;head&gt; or &lt;body&gt; as you like. The script will behave as if it was located exactly where the &lt;script&gt; tag is located.</p>
+<pre><span>&lt;script src="myScript.js"&gt;</span><span></span><span>&lt;/script&gt;</span></pre>
+<p>To add multiple script files to one page - use multiple script tags:</p>
+<pre>&lt;script src="myScript.js"&gt;&lt;/script&gt;<br>&lt;script src="myOtherScript.js"&gt;&lt;/script&gt;</pre>
+<p> </p>
+<p><strong>As an External Resource</strong></p>
+<p><span>External scripts are those scripts that are hosted on another computer or server. They can be referenced with a full URL or with a path relative to the current web page. The script tag should be placed within the head tags of the current web page.</span></p>
+<pre><span>&lt;script src="https://www.domain.com/js/myScript.js"&gt;&lt;/script&gt;</span></pre>
+<p><span style="text-decoration: underline;">External JavaScript Advantages</span></p>
+<ul>
+<li>It separates HTML and code</li>
+<li>It makes HTML and JavaScript easier to read and maintain</li>
+<li>Cached JavaScript files can speed up page loads</li>
+</ul>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Use JavaScript to Modify an HTML Table</title>
+</head>
+<body>
+<p>Add the following button and the following script to your web page that already contains a table. Place the script just before the closing body tag. Then when the user clicks the button it will add another row to the table. </p>
+<p>Can you make it so it adds a row to the end?</p>
+<p>Can you pre-populate the values with text?</p>
+<p> </p>
+<pre>&lt;button onclick="myFunction()"&gt;Add Rows&lt;/button&gt;</pre>
+<pre>&lt;script&gt;<br>function myFunction() {<br> var table = document.getElementById("myTable");<br> var row = table.insertRow(0);<br> var cell1 = row.insertCell(0);<br> var cell2 = row.insertCell(1);<br> cell1.innerHTML = "NEW CELL1";<br> cell2.innerHTML = "NEW CELL2";<br>}<br>&lt;/script&gt;</pre>
+</body>
+</html>

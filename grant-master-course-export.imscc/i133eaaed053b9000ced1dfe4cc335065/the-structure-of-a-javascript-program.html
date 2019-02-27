@@ -1,0 +1,188 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: The Structure of a JavaScript Program</title>
+</head>
+<body>
+<p>JavaScript code should be developed for readability and maintainability. Proper syntax is important for correct execution of the program. Knowing the basic syntax and code structure of JavaScript will help you develop programs faster and spend less time debugging basic errors.  </p>
+<p> </p>
+<p>There are some syntax rules that are mandatory for JavaScript functionality. Some aspects of JavaScript syntax and formatting are based on different schools of thought. That is, there are stylistic rules or choices that are not mandatory and will not result in errors when the code is run.</p>
+<p>Many common conventions are sensible to follow so as to align with the expectations of other developers with whom you may work. Adhering to common conventions leads to improved readability and improved teamwork.</p>
+<p>Consider the following three examples of variable assignment.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-keyword">const</span> greeting=<span class="hljs-string">"Hello"</span>;         <span class="hljs-comment">// no whitespace between variable &amp; string</span>
+<span class="hljs-keyword">const</span> greeting =       <span class="hljs-string">"Hello"</span>; <span class="hljs-comment">// excessive whitespace after assignment</span>
+<span class="hljs-keyword">const</span> greeting = <span class="hljs-string">"Hello"</span>;       <span class="hljs-comment">// single whitespace between variable &amp; string</span>
+</code></pre>
+<p>Although all three of the examples above will function exactly the same in the output, the third option of<span> </span><code>greeting = "Hello"</code><span> </span>is by far the most commonly used, and the most readable way of writing the code, especially when considering it within the context of a larger program.</p>
+<p>It is important to keep your entire coding project's style consistent. From one organization to another, you will encounter different guidelines to follow, so you must also be flexible.</p>
+<p>We'll go over some code examples below for you to familiarize yourself with the syntax and structure of JavaScript code and refer back to this article when in doubt.</p>
+<div data-unique="whitespace"></div>
+<h2 id="whitespace">Whitespace</h2>
+<p>Whitespace in JavaScript consists of spaces, tabs, and newlines (pressing<span> </span><code>ENTER</code><span> </span>on the keyboard). As demonstrated earlier, excessive whitespace outside of a string and the spaces between operators and other symbols are ignored by JavaScript. This means the following three examples of variable assignment will have the exact same computed output:</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-keyword">const</span> userLocation      =    <span class="hljs-string">"New York City, "</span>     +  <span class="hljs-string">"NY"</span>;
+<span class="hljs-keyword">const</span> userLocation=<span class="hljs-string">"New York City, "</span>+<span class="hljs-string">"NY"</span>;
+<span class="hljs-keyword">const</span> userLocation = <span class="hljs-string">"New York City, "</span> + <span class="hljs-string">"NY"</span>;
+</code></pre>
+<p><code>userLocation</code><span> </span>will represent "New York City, NY" no matter which of these styles are written in the script, nor will it make a difference to JavaScript whether the whitespace is written with tabs or spaces.</p>
+<p>A good rule of thumb to be able to follow the most common whitespace conventions is to follow the same rules as you are used to in math and language grammar.</p>
+<p>For example,<span> </span><code>let x = 5 * y</code><span> </span>is more readable than<span> </span><code>let x=5*y</code>.</p>
+<p>One notable exception to this style you may see is during assignment of multiple variables. Note the position of<span> </span><code>=</code><span> </span>in the following example:</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-keyword">const</span> companyName         = <span class="hljs-string">"Sterling Business Advantage"</span>;
+<span class="hljs-keyword">const</span> companyHeadquarters = <span class="hljs-string">"Gaithersburg, MD"</span>;
+<span class="hljs-keyword">const</span> companyHandle       = <span class="hljs-string">"SterlingBizAdv"</span>;
+</code></pre>
+<p>All the assignment operators (<code>=</code>) are lined up, with the whitespace after the variable. This type of organization structure is not used by every codebase, but can be used to improve readability.</p>
+<p>Excess newlines are also ignored by JavaScript. Generally, an extra newline will be inserted above a comment and after a code block.</p>
+<h3 id="parentheses">Parentheses</h3>
+<p>For keywords such as<span> </span><code>if</code>,<span> </span><code>switch</code>, and<span> </span><code>for</code>, spaces are usually added before and after the parentheses. Observe the following examples of comparison and loops.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// An example of if statement syntax</span>
+<span class="hljs-keyword">if</span> () { }
+
+<span class="hljs-comment">// Check math equation and print a string to the console</span>
+<span class="hljs-keyword">if</span> (<span class="hljs-number">4</span> &lt; <span class="hljs-number">5</span>) {
+    console.log(<span class="hljs-string">"4 is less than 5."</span>);
+}
+
+<span class="hljs-comment">// An example of for loop syntax</span>
+<span class="hljs-keyword">for</span> () { }
+
+<span class="hljs-comment">// Iterate 10 times, printing out each iteration number to the console</span>
+<span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt;= <span class="hljs-number">10</span>; i++) {
+    console.log(i);
+}
+</code></pre>
+<p>As demonstrated, the<span> </span><code>if</code><span> </span>statement and<span> </span><code>for</code><span> </span>loop have whitespace on each side of the parentheses (but not inside the parentheses).</p>
+<p>When the code pertains to a function, method or class, the parentheses will be touching the respective name.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// An example function</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">functionName</span><span class="hljs-params">()</span> {</span>}
+
+<span class="hljs-comment">// Initialize a function to calculate the volume of a cube</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">cube</span><span class="hljs-params">(number)</span> {</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.pow(number, <span class="hljs-number">3</span>);
+}
+
+<span class="hljs-comment">// Invoke the function</span>
+cube(<span class="hljs-number">5</span>);
+</code></pre>
+<p>In the above example,<span> </span><code>cube()</code><span> </span>is a function, and the pair of parentheses<span> </span><code>()</code><span> </span>will contain the parameters or arguments. In this case, the parameters are<span> </span><code>number</code><span> </span>or<span> </span><code>5</code>, respectively. Although<span> </span><code>cube ()</code><span> </span>with an extra space is valid in that the code will execute as expected, it is almost never seen. Keeping them together helps easily associate the function name to the parentheses pair and any associated passed arguments.</p>
+<div data-unique="semicolons"></div>
+<h2 id="semicolons">Semicolons</h2>
+<p>JavaScript programs consist of a series of instructions known as statements, just as written paragraphs consist of a series of sentences. While a sentence will end with a period, a JavaScript statement often ends in a semicolon (<code>;</code>).</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// A single JavaScript statement</span>
+<span class="hljs-keyword">const</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+</code></pre>
+<p>If two or more statements are next to each other, it is obligatory to separate them with a semicolon.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// Get the current timestamp and print it to the console</span>
+<span class="hljs-keyword">const</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>(); console.log(now);
+</code></pre>
+<p>If statements are separated by a newline, the semicolon is optional.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// Two statements separated by newlines</span>
+<span class="hljs-keyword">const</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()
+console.log(now)
+</code></pre>
+<p>A safe and common convention is to separate statements with a semicolon regardless of newlines. Generally, it is considered good practice to include them to reduce the probability of errors.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// Two statements separated by newlines and semicolons</span>
+<span class="hljs-keyword">const</span> now = <span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>();
+console.log(now);
+</code></pre>
+<p>Semicolons are also required between the initialization, condition, and increment or decrement of a<span> </span><code>for</code>loop.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-keyword">for</span> (initialization; condition; increment) {
+    <span class="hljs-comment">// run the loop</span>
+}
+</code></pre>
+<p>Semicolons are<span> </span><em>not</em><span> </span>included after any sort of block statement, such as<span> </span><code>if</code>,<span> </span><code>for</code>,<span> </span><code>do</code>,<span> </span><code>while</code>,<span> </span><code>class</code>,<span> </span><code>switch</code>, and<span> </span><code>function</code>. These block statements are contained in curly brackets<span> </span><code>{}</code>. Note the examples below.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// Initialize a function to calculate the area of a square</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">square</span><span class="hljs-params">(number)</span> {</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.pow(number, <span class="hljs-number">2</span>);
+}
+
+<span class="hljs-comment">// Calculate the area of a number greater than 0</span>
+<span class="hljs-keyword">if</span> (number &gt; <span class="hljs-number">0</span>) {
+    square(number);
+}
+</code></pre>
+<p>Be careful, as not all code encased in curly brackets will end without a semicolon. Objects are encased in curly brackets, and should end in a semicolon.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// An example object</span>
+<span class="hljs-keyword">const</span> objectName = {};
+
+<span class="hljs-comment">// Initialize triangle object</span>
+<span class="hljs-keyword">const</span> triangle = {
+    type: <span class="hljs-string">"right"</span>,
+    angle: <span class="hljs-number">90</span>,
+    sides: <span class="hljs-number">3</span>,
+};
+</code></pre>
+<p>It is widely accepted practice to include semicolons after every JavaScript statement except block statements, which end in curly brackets.</p>
+<div data-unique="indentation"></div>
+<h2 id="indentation">Indentation</h2>
+<p>A complete JavaScript program can technically be written on a single line. However, this would quickly become very difficult to read and maintain. Instead, we use newlines and indentation.</p>
+<p>Here's an example of a conditional<span> </span><code>if</code>/<code>else</code><span> </span>statement, written on either one line or with newlines and indentation.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// Conditional statement written on one line</span>
+<span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) { <span class="hljs-comment">/* execute code if true */</span> } <span class="hljs-keyword">else</span> { <span class="hljs-comment">/* execute code if false */</span> }
+
+<span class="hljs-comment">// Conditional statement with indentation</span>
+<span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) {
+    <span class="hljs-comment">// execute code if true</span>
+} <span class="hljs-keyword">else</span> {
+    <span class="hljs-comment">// execute code if false</span>
+}
+</code></pre>
+<p>Notice that any code included within a block is indented. The indentation can be done with two spaces, four spaces, or by pressing the tab character. Whether tabs or spaces are used is dependent on either your personal preference (for a solo project) or your organization's guidelines (for a collaborative project).</p>
+<p>Including the opening brace at the end of the first line, as in the above example, is the conventional way to structure JavaScript block statements and objects. Another way you may see block statements written is with the braces on their own lines.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// Conditional statement with braces on newlines</span>
+<span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>)
+{
+    <span class="hljs-comment">// execute code if true</span>
+}
+<span class="hljs-keyword">else</span>
+{
+    <span class="hljs-comment">// execute code if false</span>
+}
+</code></pre>
+<p>This style is much less common in JavaScript as it is in other languages, but not unheard of.</p>
+<p>Any nested block statement will be indented further.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// Initialize a function</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEqualToOne</span><span class="hljs-params">(x)</span> {</span>
+    <span class="hljs-comment">// Check if x is equal to one</span>
+    <span class="hljs-keyword">if</span> (x === <span class="hljs-number">1</span>) {
+        <span class="hljs-comment">// on success, return true</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+    } <span class="hljs-keyword">else</span> {
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+    }
+}
+</code></pre>
+<p>Proper indentation of your code is imperative to maintain readability and to mitigate confusion. One exception to this rule to keep in mind is that compressed libraries will have unnecessary characters removed, therefore rendering file sizes smaller to enable faster page load times (as in<span> </span><a href="https://jquery.com/download/"><code>jquery.min.js</code></a><span> </span>and<span> </span><a href="https://d3js.org/"><code>d3.min.js</code></a>).</p>
+<div data-unique="identifiers"></div>
+<h2 id="identifiers">Identifiers</h2>
+<p>The name of a variable, function, or property is known as an<span> </span><strong>identifier</strong><span> </span>in JavaScript. Identifiers consist of letters and numbers, but they cannot include any symbol outside of<span> </span><code>$</code><span> </span>and<span> </span><code>_</code>, and cannot begin with a number.</p>
+<h3 id="case-sensitive">Case Sensitive</h3>
+<p>These names are case sensitive. The following two examples,<span> </span><code>myVariable</code><span> </span>and<span> </span><code>myvariable</code><span> </span>would refer to two distinct variables.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-keyword">var</span> myVariable = <span class="hljs-number">1</span>;
+<span class="hljs-keyword">var</span> myvariable = <span class="hljs-number">2</span>;
+</code></pre>
+<p>The convention of JavaScript names is that they are written in camelCase, meaning the first word is lowercase but every following word starts with an uppercase letter. You may also see global variables or constants written in all uppercase, separated by underscores.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-keyword">const</span> INSURANCE_RATE = <span class="hljs-number">0.4</span>;
+</code></pre>
+<p>The exception to this rule is class names, which are often written with every word starting in an uppercase letter (PascalCase).</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-comment">// Initialize a class</span>
+<span class="hljs-keyword">class</span> ExampleClass {
+    constructor() { }
+}
+</code></pre>
+<p>In order to ensure that code is readable, it is best to use clearly different identifiers throughout your program files.</p>
+<h3 id="reserved-keywords">Reserved Keywords</h3>
+<p>Identifiers also must not consist of any reserved keywords. Keywords are words in the JavaScript language that have a built-in functionality, such as<span> </span><code>var</code>,<span> </span><code>if</code>,<span> </span><code>for</code>, and<span> </span><code>this</code>.</p>
+<p>You would not, for example, be able to assign a value to a variable named<span> </span><code>var</code>.</p>
+<pre class="code-pre "><code class="code-highlight language-js hljs "><span class="hljs-keyword">var</span> <span class="hljs-keyword">var</span> = <span class="hljs-string">"Some value"</span>;
+</code></pre>
+<p>Since JavaScript understands<span> </span><code>var</code><span> </span>to be a keyword, this will result in a syntax error:</p>
+<div class="code-label " title="Output">Output</div>
+<pre class="code-pre "><code>SyntaxError: Unexpected token (1:4)
+</code></pre>
+<p>For a complete reference, please view this<span> </span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Reserved_keywords_as_of_ECMAScript_2015">list of reserved keywords (MDN)</a></p>
+<div data-unique="conclusion"></div>
+<h2 id="conclusion"></h2>
+<p> </p>
+</body>
+</html>

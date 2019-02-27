@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<modules xmlns="http://canvas.instructure.com/xsd/cccv1p0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://canvas.instructure.com/xsd/cccv1p0 https://canvas.instructure.com/xsd/cccv1p0.xsd">
+  <module identifier="i954c5dce43d920e28d0848dac26bd688">
+    <title>Intro to HTML</title>
+    <workflow_state>unpublished</workflow_state>
+    <position>1</position>
+    <require_sequential_progress>false</require_sequential_progress>
+    <locked>false</locked>
+    <items>
+      <item identifier="i6c8de15194fceb085e69eae0ed307284">
+        <content_type>WikiPage</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>HTML Resources</title>
+        <identifierref>iff298a3f008cfa17b4596bf6756a92d2</identifierref>
+        <position>1</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i74c35059e73ec877bb84ef947284b296">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>A Little Bit of HTML and CSS</title>
+        <identifierref>i09124a71ae1899bc96e0b6c80ce0c140</identifierref>
+        <position>2</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="ic0dc814f20562ca6b61ed4bf3b5637b7">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>A Basic Web Page</title>
+        <identifierref>i187c154d1d9f1dd91d46fb107365012a</identifierref>
+        <position>3</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="idea5c8719a2663360e54997eb8ca80ff">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>HTML Elements, Attributes and Whitespace</title>
+        <identifierref>if396f02642d988b6cbbbf05c4bdc24f5</identifierref>
+        <position>4</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i3bd5a9e10379275273ea94466ac297e1">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Example of a Valid HTML Page</title>
+        <identifierref>iaf3b0bbc4311b0a6231a709c75360d6b</identifierref>
+        <position>5</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i5098fd59cdd57917eedc40f73bb0f4e0">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Adding Comments, Displaying Hyperlinks, Images and Linked Images</title>
+        <identifierref>i40005fd3eeb7d069d489166e5bd6f26f</identifierref>
+        <position>6</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="if2315241364450fa76f27220b652c851">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>A Crabby Web Page</title>
+        <identifierref>if086c1040185356b7af7cb3b7659a733</identifierref>
+        <position>7</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i44f64861248d175e22da223b298def2d">
+        <content_type>Assignment</content_type>
+        <workflow_state>active</workflow_state>
+        <title>Create an HTML Form that does Nothing</title>
+        <identifierref>i30906144bb2181bb440215e2b1ebd7a3</identifierref>
+        <position>8</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="if9baa98515fe38c2a47ef409c2472715">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Create an HTML Table</title>
+        <identifierref>i0834ddadfe691e21e5dac2291e5c72e1</identifierref>
+        <position>9</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i08102c1ecdc27f9fe787c79060da4dc3">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>SPAN and DIV Tags</title>
+        <identifierref>i9a41f9a3d78c8ca87ec5dd442fa59bea</identifierref>
+        <position>10</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+    </items>
+  </module>
+  <module identifier="i52b70b4973dc7ed80549073aa1959190">
+    <title>JavaScript</title>
+    <workflow_state>unpublished</workflow_state>
+    <position>2</position>
+    <require_sequential_progress>false</require_sequential_progress>
+    <locked>false</locked>
+    <items>
+      <item identifier="if136297e26774dbc428e2aa193a54cad">
+        <content_type>WikiPage</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>JavaScript Resources</title>
+        <identifierref>i222e770e5b577208afa5f6d712ca08a3</identifierref>
+        <position>1</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i55080469842dac644caae629ba1baca2">
+        <content_type>Assignment</content_type>
+        <workflow_state>active</workflow_state>
+        <title>What is JavaScript?</title>
+        <identifierref>i6b5d34f3f409200fc72390daf6c508be</identifierref>
+        <position>2</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="ibcd5c0973749e119dcacd59bba428991">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>What Can JavaScript Do?</title>
+        <identifierref>i64c507e188981669108e8e059ce40403</identifierref>
+        <position>3</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i7057cb738bf632765aaa58748e4e9a5a">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>The Structure of a JavaScript Program</title>
+        <identifierref>i133eaaed053b9000ced1dfe4cc335065</identifierref>
+        <position>4</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i0ca55d3e7f5320453881387e379fd441">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Creating a JavaScript Web Application with IntelliJ</title>
+        <identifierref>i4d0fb92cd14d4d83d14c68eec1e8af51</identifierref>
+        <position>5</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i12a1349fd5f93027ffbf16e593d764d6">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Your First JavaScript Program</title>
+        <identifierref>ic153ff9293cea7890733045ad3399110</identifierref>
+        <position>6</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i7c0b74d89872bd5f866575a7cfeeb628">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Where to Place JavaScript Code</title>
+        <identifierref>i33409ccceaa8466a35eac06f9fa352cd</identifierref>
+        <position>7</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="icac49fe8fc0795d4e2efc2634581b6bb">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Making Decisions in JavaScript</title>
+        <identifierref>i8e5ae6731f7eff9328297a97a3a011b7</identifierref>
+        <position>8</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i99e3ee376823d2456df481fd248987a5">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Repeating Code with JavaScript Loops</title>
+        <identifierref>i81df4603df279c60484af73d8c779756</identifierref>
+        <position>9</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i2c245d878ff62c401439992c2ea88169">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Guessing Game</title>
+        <identifierref>ic183bac8d9325d6275151bf56fe86247</identifierref>
+        <position>10</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i5c195a2a822c1919e5ee02f577a416d8">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Create FizzBuzz</title>
+        <identifierref>iad34bd155460d5d222296d030f75104d</identifierref>
+        <position>11</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i300c3a6fb5302d99031d5101fedee46e">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>A Simple Input/Output HTML Page</title>
+        <identifierref>i48a2d7b3c422fcb26d4e9cbf08bb4568</identifierref>
+        <position>12</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="icd1c477433d3ae1b3e91b8daec831082">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Interacting with the User</title>
+        <identifierref>ia519eefcef17dddeffe103e3919bb99a</identifierref>
+        <position>13</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i14841aa13b46fcb214721764d127b511">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Movie List (Arrays)</title>
+        <identifierref>idc0b6f00fff5a234a741aced7060e7b2</identifierref>
+        <position>14</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="id1581572e7b489c20742df20e27c80a9">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Variables and Data Types</title>
+        <identifierref>if533571d78d1a33f5721f3d0d3623269</identifierref>
+        <position>15</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i40eaffdbaae8ef65a7aea5e45e7be79e">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Creating Functions</title>
+        <identifierref>ic9adca29e0ac2e8a61a657eca9d31844</identifierref>
+        <position>16</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i8d2b977ce73783399b44f669ab08ccf1">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Create a To Do List </title>
+        <identifierref>id06970c9bcc87b1e29f494ceaf545be9</identifierref>
+        <position>17</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i65a409b7023e68e1925e062a58f77d09">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Explore the DOM</title>
+        <identifierref>i6e54bf19aa092cd7af4c1da301ff6855</identifierref>
+        <position>18</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="ifc3d35d43a8f1e9b5f7ecc1190f8b4cf">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Change the DOM</title>
+        <identifierref>if95d4037f6e528d5292354eea99ce872</identifierref>
+        <position>19</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i42794733da29d7639aa50cd5dcf0062a">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Debugging your program</title>
+        <identifierref>i85b997b8982f451911b4347aa492c350</identifierref>
+        <position>20</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="ic5e69763785b6496bf1c5d4ccd7e6bc3">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Hide the Contents of a DIV</title>
+        <identifierref>i6ad9c7a2e6dcab2ceea8430334de8370</identifierref>
+        <position>21</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="if37d6e7dff251b815c8d08dcf7366198">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Attributes</title>
+        <identifierref>i93df260beab7993f81b7f6e3a1e30725</identifierref>
+        <position>22</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i46a8c306dff8abe53eb308a3f905059e">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Use JavaScript to Modify an HTML Table</title>
+        <identifierref>i871d8ccf1665794a75ca6d13134a233f</identifierref>
+        <position>23</position>
+        <new_tab>false</new_tab>
+        <indent>0</indent>
+      </item>
+      <item identifier="if6c855bfab1d8b7ac9899faa2a9a1ae4">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Getting Data From HTML Forms</title>
+        <identifierref>i7ba50913624a87403cc871223d23c241</identifierref>
+        <position>24</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i9a65b99c55a57e9ceac37632141b7fc2">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Create a Sales Tax Calculator</title>
+        <identifierref>i1e0d384ca279fbec9fdddb82608e796c</identifierref>
+        <position>25</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i5caffd164755636195f57606bd792ad7">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Chrome Developer Tools</title>
+        <identifierref>i24df2b8a8f33590e53e8d755d4620e15</identifierref>
+        <position>26</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i1bd522e7b32338c7d25068cc874b5b0b">
+        <content_type>Quizzes::Quiz</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Introduction to JavaScript Quiz I</title>
+        <identifierref>i904ec29b6055eab39a8e6e6080d63862</identifierref>
+        <position>27</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i3459b5c56c65ea676ad6de64aaf93b6e">
+        <content_type>Quizzes::Quiz</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Introduction to JavaScript Quiz II</title>
+        <identifierref>ie607be35f60a8edb41a0971f0ed7980f</identifierref>
+        <position>28</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i49a7738eb389f3c37feb313bbd85accf">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Build an HTML Calculator App</title>
+        <identifierref>i5147472835f4c3e281d3c140cf80ab1b</identifierref>
+        <position>29</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="ib533be304be905a168f3627e823f25ec">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Handling Errors</title>
+        <identifierref>i3ca70c7098d5b2b6d18e863f81664135</identifierref>
+        <position>30</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i63a2ab5c567571b9b5728b402923b3ed">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Use JavaScript to Validate the Username (as email) and Password</title>
+        <identifierref>ia07488bcaf20f02ae72a075bba8be351</identifierref>
+        <position>31</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="ia0bc7f36217ddbb8df53ed2b8b1a09dc">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Create a JavaScript version of Zork</title>
+        <identifierref>i9f00952003c87a0f50dbb718c833b977</identifierref>
+        <position>32</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i0fb5f4a1a7b37f2647e47587e1d27ff7">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Create a JavaScript Temperature Converter</title>
+        <identifierref>i6768a7fb45497184c476f56a9e9895a0</identifierref>
+        <position>33</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="i6beae16d758ec5a30a4ed90315299324">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Restricting the Length of a Password</title>
+        <identifierref>ia3fe4d1f3eb27fe8be5cde8b9860a149</identifierref>
+        <position>34</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+      <item identifier="id4e363eb1263eab07bd306c406c1657b">
+        <content_type>Assignment</content_type>
+        <workflow_state>unpublished</workflow_state>
+        <title>Create a GitHub Resume</title>
+        <identifierref>ie6f45b24f14289b948ee8c7eda02490e</identifierref>
+        <position>35</position>
+        <new_tab/>
+        <indent>0</indent>
+      </item>
+    </items>
+  </module>
+</modules>

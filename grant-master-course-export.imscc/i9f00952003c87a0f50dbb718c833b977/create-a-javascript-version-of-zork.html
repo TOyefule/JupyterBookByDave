@@ -1,0 +1,14 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Create a JavaScript version of Zork</title>
+</head>
+<body>
+<div>JavaScript is the programming language of the browser. You can use it to make your web pages more interactive.</div>
+<div></div>
+<div>Use the following html and JavaScript code to get started. follow the instructions from the instructor to create a browser-based version of Zork.</div>
+<div></div>
+<pre>&lt;html&gt;<br>&lt;head&gt;<br>&lt;script&gt;<br>function Zork(){<br>v = document.getElementById("command").value;<br><br>document.getElementById("message").innerHTML = "&lt;b&gt;You said: " + v + "&lt;/b&gt;"<br>document.getElementById("parlor").style.backgroundColor = "blue";<br>moves = document.getElementById("moves").text<br>document.getElementById("moves").value + "\\\rYour next move"<br>}<br><br>&lt;/script&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;h1&gt;welcome to zork&lt;/h1&gt;<br>&lt;table border="1" style="width:400px"&gt;<br>&lt;tr&gt;&lt;td border="1" id="parlor"&gt;&amp;nbsp;&lt;/td&gt;&lt;td border="1" id="vault"&gt;&amp;nbsp;&lt;/td&gt;&lt;td border="1" id="diningRoom"&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;<br>&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;<br>&lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;<br>&lt;/table&gt;<br><br>&lt;div id="message"&gt;<br><br>&lt;/div&gt;<br>&lt;form action="javascript:Zork();"&gt;<br>&lt;input type="text" name="command" id="command"&gt;&lt;/input&gt;<br>&lt;input type="submit" id="submit" name="submit"&gt;<br>&lt;img src="http://images.clipartpanda.com/death-clipart-tombstone-clipart.gif" alt="Game over. Dude." height="50"&gt;&lt;/img&gt;<br>&lt;/form&gt;<br>&lt;h2&gt;your moves:&lt;/h2&gt;<br>&lt;textarea id="moves" rows="6" cols="50"&gt;<br>&lt;/textarea&gt;<br>&lt;/body&gt;<br>&lt;/html&gt;</pre>
+<div></div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Assignment: Interacting with the User</title>
+</head>
+<body>
+<p><span>A dialog box is a small window that pops up and forces the user to press a button. Sometimes the user must enter some  information first. This allows your script to interact with the user.</span></p>
+<p><span>JavaScript supports three important types of dialog boxes. These dialog boxes can be used to raise and alert, or to get confirmation on any input or to have a kind of input from the users.</span></p>
+<h4><span>The Alert Dialog Box</span></h4>
+<p>The alert dialog box is generally used to display a message to users. For example, if one input field requires text input but the user has not provided any then, as a part of validation, you can use an alert box to display a warning message.  The Alert box gives only one button "OK" to select and proceed.</p>
+<p>Example:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span><span class="pln">
+   </span><span class="tag">&lt;head&gt;</span><span class="pln">   
+      </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln">
+         </span><span class="pun">&lt;!--</span><span class="pln">
+            </span><span class="kwd">function</span><span class="pln"> </span><span class="typ">Warn</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+               alert </span><span class="pun">(</span><span class="str">"This is a warning message!"</span><span class="pun">);</span><span class="pln">
+               document</span><span class="pun">.</span><span class="pln">write </span><span class="pun">(</span><span class="str">"This is a warning message!"</span><span class="pun">);</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+         </span><span class="com">//--&gt;</span><span class="pln">
+      </span><span class="tag">&lt;/script&gt;</span><span class="pln">     
+   </span><span class="tag">&lt;/head&gt;</span><span class="pln">
+   
+   </span><span class="tag">&lt;body&gt;</span><span class="pln">
+      </span><span class="tag">&lt;p&gt;</span><span class="pln">Click the following button to see the result: </span><span class="tag">&lt;/p&gt;</span><span class="pln">      
+      </span><span class="tag">&lt;form&gt;</span><span class="pln">
+         </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"button"</span><span class="pln"> </span><span class="atn">value</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"Click Me"</span><span class="pln"> </span><span class="atn">onclick</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"</span><span class="typ">Warn</span><span class="pun">();</span><span class="atv">"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+      </span><span class="tag">&lt;/form&gt;</span><span class="pln">     
+   </span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;</span></pre>
+<h4>The Confirmation Dialog Box</h4>
+<p>A confirmation dialog box is mostly used to take user's consent on any option. It displays a dialog box with two buttons:<span> </span><strong>OK</strong><span> </span>and<span> </span><strong>Cancel</strong>.</p>
+<p>If the user clicks on the OK button, the window method<span> </span><strong>confirm()</strong><span> </span>will return true. If the user clicks on the Cancel button, then<span> </span><strong>confirm()</strong><span> </span>returns false. </p>
+<p> </p>
+<p>Example:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span><span class="pln">
+   </span><span class="tag">&lt;head&gt;</span><span class="pln">   
+      </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln">
+         </span><span class="pun">&lt;!--</span><span class="pln">
+            </span><span class="kwd">function</span><span class="pln"> getConfirmation</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+               </span><span class="kwd">var</span><span class="pln"> retVal </span><span class="pun">=</span><span class="pln"> confirm</span><span class="pun">(</span><span class="str">"Do you want to continue ?"</span><span class="pun">);</span><span class="pln">
+               </span><span class="kwd">if</span><span class="pun">(</span><span class="pln"> retVal </span><span class="pun">==</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                  document</span><span class="pun">.</span><span class="pln">write </span><span class="pun">(</span><span class="str">"User wants to continue!"</span><span class="pun">);</span><span class="pln">
+                  </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+               </span><span class="pun">}</span><span class="pln"> </span><span class="kwd">else</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+                  document</span><span class="pun">.</span><span class="pln">write </span><span class="pun">(</span><span class="str">"User does not want to continue!"</span><span class="pun">);</span><span class="pln">
+                  </span><span class="kwd">return</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span><span class="pln">
+               </span><span class="pun">}</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+         </span><span class="com">//--&gt;</span><span class="pln">
+      </span><span class="tag">&lt;/script&gt;</span><span class="pln">     
+   </span><span class="tag">&lt;/head&gt;</span><span class="pln">
+   
+   </span><span class="tag">&lt;body&gt;</span><span class="pln">
+      </span><span class="tag">&lt;p&gt;</span><span class="pln">Click the following button to see the result: </span><span class="tag">&lt;/p&gt;</span><span class="pln">      
+      </span><span class="tag">&lt;form&gt;</span><span class="pln">
+         </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"button"</span><span class="pln"> </span><span class="atn">value</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"Click Me"</span><span class="pln"> </span><span class="atn">onclick</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"</span><span class="pln">getConfirmation</span><span class="pun">();</span><span class="atv">"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+      </span><span class="tag">&lt;/form&gt;</span><span class="pln">      
+   </span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;<br></span></pre>
+<h4>The Prompt Dialog Box</h4>
+<p>The prompt dialog box is useful when you want to pop-up a text box to get user input. Thus, it enables you to interact with the user. The user needs to enter a response in the field and click OK.</p>
+<p>This dialog box is displayed using a method called<span> </span><strong>prompt()</strong><span> </span>which takes two parameters: text to display in the text box and a default response to display in the text box.</p>
+<p>This dialog box has two buttons:<span> </span><strong>OK</strong><span> </span>and<span> </span><strong>Cancel</strong>. If the user clicks the OK button, the window method<span> </span><strong>prompt()</strong><span> </span>will return the entered value from the text box. If the user clicks the Cancel button, the window method<span> </span><strong>prompt()</strong>returns<span> </span><strong>null</strong>.</p>
+<p>Example:</p>
+<pre class="prettyprint notranslate prettyprinted"><span class="tag">&lt;html&gt;</span><span class="pln">
+   </span><span class="tag">&lt;head&gt;</span><span class="pln">     
+      </span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">type</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"text/javascript"</span><span class="tag">&gt;</span><span class="pln">
+         </span><span class="pun">&lt;!--</span><span class="pln">
+            </span><span class="kwd">function</span><span class="pln"> getValue</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+               </span><span class="kwd">var</span><span class="pln"> retVal </span><span class="pun">=</span><span class="pln"> prompt</span><span class="pun">(</span><span class="str">"Enter your name : "</span><span class="pun">,</span><span class="pln"> </span><span class="str">"your name here"</span><span class="pun">);</span><span class="pln">
+               document</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="str">"You have entered : "</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> retVal</span><span class="pun">);</span><span class="pln">
+            </span><span class="pun">}</span><span class="pln">
+         </span><span class="com">//--&gt;</span><span class="pln">
+      </span><span class="tag">&lt;/script&gt;</span><span class="pln">      
+   </span><span class="tag">&lt;/head&gt;</span><span class="pln">
+   
+   </span><span class="tag">&lt;body&gt;</span><span class="pln">
+      </span><span class="tag">&lt;p&gt;</span><span class="pln">Click the following button to see the result: </span><span class="tag">&lt;/p&gt;</span><span class="pln">      
+      </span><span class="tag">&lt;form&gt;</span><span class="pln">
+         </span><span class="tag">&lt;input</span><span class="pln"> </span><span class="atn">type</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"button"</span><span class="pln"> </span><span class="atn">value</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"Click Me"</span><span class="pln"> </span><span class="atn">onclick</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="atv">"</span><span class="pln">getValue</span><span class="pun">();</span><span class="atv">"</span><span class="pln"> </span><span class="tag">/&gt;</span><span class="pln">
+      </span><span class="tag">&lt;/form&gt;</span><span class="pln">      
+   </span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;</span></pre>
+<p> </p>
+<p> </p>
+<p> </p>
+<p> </p>
+</body>
+</html>
