@@ -1,0 +1,1542 @@
+
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Custom-Display-Logic">Custom Display Logic<a class="anchor-link" href="#Custom-Display-Logic">&#182;</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Overview">Overview<a class="anchor-link" href="#Overview">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As described in the <a href="Rich Output.ipynb">Rich Output</a> tutorial, the IPython display system can display rich representations of objects in the following formats:</p>
+<ul>
+<li>JavaScript</li>
+<li>HTML</li>
+<li>PNG</li>
+<li>JPEG</li>
+<li>SVG</li>
+<li>LaTeX</li>
+<li>PDF</li>
+</ul>
+<p>This Notebook shows how you can add custom display logic to your own classes, so that they can be displayed using these rich representations. There are two ways of accomplishing this:</p>
+<ol>
+<li>Implementing special display methods such as <code>_repr_html_</code> when you define your class.</li>
+<li>Registering a display function for a particular existing class.</li>
+</ol>
+<p>This Notebook describes and illustrates both approaches.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Import the IPython display functions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="p">(</span>
+    <span class="n">display</span><span class="p">,</span> <span class="n">display_html</span><span class="p">,</span> <span class="n">display_png</span><span class="p">,</span> <span class="n">display_svg</span>
+<span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Parts of this notebook need the matplotlib inline backend:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ion</span><span class="p">()</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Special-display-methods">Special display methods<a class="anchor-link" href="#Special-display-methods">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The main idea of the first approach is that you have to implement special display methods when you define your class, one for each representation you want to use. Here is a list of the names of the special methods and the values they must return:</p>
+<ul>
+<li><code>_repr_html_</code>: return raw HTML as a string</li>
+<li><code>_repr_json_</code>: return a JSONable dict</li>
+<li><code>_repr_jpeg_</code>: return raw JPEG data</li>
+<li><code>_repr_png_</code>: return raw PNG data</li>
+<li><code>_repr_svg_</code>: return raw SVG data as a string</li>
+<li><code>_repr_latex_</code>: return LaTeX commands in a string surrounded by "$".</li>
+<li><code>_repr_mimebundle_</code>: return a full mimebundle containing the mapping from all mimetypes to data </li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As an illustration, we build a class that holds data generated by sampling a Gaussian distribution with given mean and standard deviation. Here is the definition of the <code>Gaussian</code> class, which has a custom PNG and LaTeX representation.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.core.pylabtools</span> <span class="k">import</span> <span class="n">print_figure</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">SVG</span><span class="p">,</span> <span class="n">Math</span>
+
+<span class="k">class</span> <span class="nc">Gaussian</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A simple object holding data sampled from a Gaussian distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">std</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="c1"># For caching plots that may be expensive to compute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_png_data</span> <span class="o">=</span> <span class="kc">None</span>
+        
+    <span class="k">def</span> <span class="nf">_figure_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="p">):</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_repr_latex_</span><span class="p">())</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">print_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+        <span class="c1"># We MUST close the figure, otherwise IPython&#39;s display machinery</span>
+        <span class="c1"># will pick it up and send it as output, resulting in a double display</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span>
+        
+    <span class="k">def</span> <span class="nf">_repr_png_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_png_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_png_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_figure_data</span><span class="p">(</span><span class="s1">&#39;png&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_png_data</span>
+    
+    <span class="k">def</span> <span class="nf">_repr_latex_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="sa">r</span><span class="s1">&#39;$\mathcal</span><span class="si">{N}</span><span class="s1">(\mu=</span><span class="si">%.2g</span><span class="s1">, \sigma=</span><span class="si">%.2g</span><span class="s1">),\ N=</span><span class="si">%d</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
+                                                                 <span class="bp">self</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Create an instance of the Gaussian distribution and return it to display the default representation:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">Gaussian</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
+<span class="n">x</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[4]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\mathcal{N}(\mu=2, \sigma=1),\ N=1000$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can also pass the object to the <code>display</code> function to display the default representation:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_latex output_subarea ">
+$\mathcal{N}(\mu=2, \sigma=1),\ N=1000$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Use <code>display_png</code> to view the PNG representation:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_png</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAXsAAAEKCAYAAADzQPVvAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz
+AAALEgAACxIB0t1+/AAAFOZJREFUeJzt3X+0ZWV93/H3xxnAVIlAGJCIOpiFFgxhMLMIDUlKxBB+
+uAQbtRiXmRaSadrQ6lrtSsayklJjW0ybaNommolQJ1k0QBWEBRidotaVtRLMID+EAPIjoyKEGRUQ
+iDEi3/6x99Xj5dx7z73nnPtjnvdrrbPu2fvZe5/vPGfP5+zz7H33TVUhSdq3PWelC5AkTZ9hL0kN
+MOwlqQGGvSQ1wLCXpAYY9pLUAMNekhpg2EtSAwx7keTMJI8kuTjJf0ny9pWuabVJ8pkkr1zpOqSl
+MuwbkuTHkuw3a95zgFOAXwK+CvwC8AdTruOAJJck+UKSJ5LckuSMab7mCDVdkGRXkm8m+eCQRf4b
+8M4lbvvgJJXkz2fN/4Mk71nKNge2MW/dSQ5JcnWSp/r+/vlR2kZp19pi2LflPODsWfNOBq6qqmv7
+6Ruq6htTrmM98CXgHwMvAH4duDLJxim/7nweAt4FXDpH+7XATyc5Ygnb3gT8DXDsrPU3AbcuYXuD
+Fqr794C/Bw4H3gK8b+Abynxto7RrDTHs23ICsHXWvJOAm/rnZwD/b7AxyYVJ3jcwfXCSbyV57lKL
+qKqnquqiqtpdVc9U1XXAXwM/utC6SfZL8p+S7O7rqP5x21Lr6Wu6qqo+QvftZlj73wE3A6ctYfOb
+gF3ATuB1AEnWAccBtyyp4O/WNWfdSZ4H/Bzw61X1ZFX9Gd2H1lvna1to3XHq1cox7BuRZD2wFzg1
+ycsHmtbXd++Gdxxwz6xVj+N7jz43Aff04Te4/euSPDbH47oFajsceDlw5wj/lHcBpwI/CRwE3Ahc
+Dbx+UvXM4y7g+CWsdwJdH34EOKef9w+Bdf02p1X3y4FvV9XnB+bdBrxygbaF1tUatH6lC9Cy2QT8
+L2B/4G3AryQ5lu8Nm4OAJ2atdxwwOK68ie4//feoqtcupaj+HMJlwI6qunuBZQ8E/g3wI1X1pX7e
+h4F/WlUPTKKeBTwBLHUY5xrgE8D7+3/HJuCOqvrW4IITrvv5wOOz5j0OHLhA20Lrag3yyL4dp9Ad
+Bf82cF6Sl9ANSewcWOZRBv4zJ9kf+CHgcwPLHM/448wz238O8Md048IXjLDKTwEPVNW9A/MOphsP
+Xw4HAo8tZoUkBwDHALdW1aPAZ+iGy2aO9qfpSeD7Z837froPrfnaFlpXa5Bh347DqurRqvpTujH6
+3wWeX1VPDSxzO93X9xnHAl+uqr8FSBK6D41nHdkn+WiSJ+d4fHTI8gEuoTv593Ozj3DnsIHuA2lw
+G68HnjW8sdh6RnQMQ/7tC/hh4BvAzDePmaGcExgyXj/huj8PrE9y9MC84+mGy+ZrW2hdrUEO4+zD
+kvwE3TDM14FPDzT9C7rQ+visVW6gu0Lmsn76OOCwJD9Ed9XHhcBLgd2zX6uqFnvp5PvowvM1w67+
+mbmMsKr+2cDsO4BXJdlEd27hPwAFXDFuPf05jfV04+jr+hPQT1fV0337AXQnkLfMU98wJwC3DZwX
+uYbuEs5n+vqnVndVPZXkKuCdSX6RbujobODH52vr65i3XWtQVfnYRx90V1N8A3jvkLZfBV48a96h
+wIPA9/XTvwV8iO4o78vAvwbupxtfH6eul9KF9N/RDRfMPN4ysMyNwC8NWfdCug+eh4EPAodOqK8u
+6msafFw00P5GuktU561vyHb/J/A/Zs27lS7sD1yGug+h+zbxFPBF4OdHaRul3cfaeqR/U7WPSpJa
+xJuc5D8De6rqvf2wwQeq6sPTq3BoDfvTffP4kRpteGfqktwEnF9Vd6zG+qSFGPaaU5IHgdOq6q9W
+uhZJ4zHsNVSSg4FHgOd59CqtfYa9JDXASy8lqQHLeunloYceWhs3blzOl5SkNe/mm2/+SlVtGGcb
+yxr2GzduZNeuXcv5kpK05iX5wrjbcBhHkhpg2EtSAwx7SWqAYS9JDTDsJakBhr0kNcCwl6QGGPaS
+1ADDXpIaYNhLy2TjtuvZuO36sZeRlsKwl6QGGPaS1ADDXpIaYNhLUgMMe0lqgGEvSQ0w7CWpASP9
+paoku4EngG8DT1fV5iSHAFcAG4HdwJuq6tHplClJGsdijux/uqo2VdXmfnobcGNVHQ3c2E9Lklah
+cYZxzgZ29M93AOeMX44kaRpGDfsCPp7k5iRb+3mHV9XDAP3Pw4atmGRrkl1Jdu3du3f8iiVJizbS
+mD1wclU9lOQwYGeSu0d9garaDmwH2Lx5cy2hRknSmEY6sq+qh/qfe4CrgROBR5IcAdD/3DOtIiVJ
+41kw7JM8L8mBM8+B04A7gGuBLf1iW4BrplWkJGk8owzjHA5cnWRm+f9dVX+a5C+BK5OcD3wReOP0
+ypT2HYO3MN598VkrWIlasmDYV9UDwPFD5n8VOHUaRUmSJsvfoJWkBhj2ktQAw15aQZP4M4T+KUON
+wrCXpAYY9pLUAMNekhpg2EtSAwx7SWqAYS9JDTDsJakBo97iWNISeQ28VgOP7CWpAYa9JDXAsJek
+Bhj2ktQAw16SGmDYS1IDDHtJaoBhL0kNMOwlqQGGvSQ1wLCXpAYY9pLUAMNekhpg2EtSAwx7SWqA
+97OXVqGZe+Dvvvis75kenCcthkf2ktQAw16SGmDYS1IDRg77JOuS3JLkun76qCQ3Jbk3yRVJ9p9e
+mZKkcSzmyP5twF0D0+8G3lNVRwOPAudPsjBJ0uSMFPZJjgTOAj7QTwd4NfChfpEdwDnTKFCSNL5R
+j+zfC/wq8Ew//QPAY1X1dD/9IPCiCdcmSZqQBa+zT/JaYE9V3ZzklJnZQxatOdbfCmwFeMlLXrLE
+MqW1Y/Y18otZZ1rbl0Y5sj8ZeF2S3cDldMM37wUOSjLzYXEk8NCwlatqe1VtrqrNGzZsmEDJkqTF
+WjDsq+odVXVkVW0EzgU+UVVvAT4JvKFfbAtwzdSqlCSNZZzbJfwacHmSdwG3AJdMpiRJMxYzvCPN
+Z1FhX1WfAj7VP38AOHHyJUmSJs3foJWkBhj2ktQAb3EsTYnj7VpNPLKXpAYY9pLUAMNekhrgmL20
+RnlOQIvhkb0kNcCwl6QGGPaS1ADDXpIaYNhLUgMMe0lqgGEvSQ0w7KV9xMZt13vtveZk2EtSAwx7
+SWqAYS9JDTDspSVwfFxrjWEvSQ0w7CWpAYa9JDXAsJekBhj2ktQAw16SGmDYS1IDDHtJaoBhL0kN
+MOwlqQGGvSQ1YMGwT/LcJJ9JcluSO5P8x37+UUluSnJvkiuS7D/9ciVJSzHKkf03gVdX1fHAJuD0
+JCcB7wbeU1VHA48C50+vTEnSOBYM++o82U/u1z8KeDXwoX7+DuCcqVQoSRrbSGP2SdYluRXYA+wE
+7gceq6qn+0UeBF40nRIlSeMaKeyr6ttVtQk4EjgROGbYYsPWTbI1ya4ku/bu3bv0SiVJS7aoq3Gq
+6jHgU8BJwEFJ1vdNRwIPzbHO9qraXFWbN2zYME6tkqQlGuVqnA1JDuqffx/wGuAu4JPAG/rFtgDX
+TKtISdJ41i+8CEcAO5Kso/twuLKqrkvyV8DlSd4F3AJcMsU6pVXPP1Oo1WzBsK+q24EThsx/gG78
+XpK0yvkbtJLUAMNekhpg2EtSAwx7SWqAYS9JDTDsJakBhr0kNcCwl6QGGPaS1ADDXpIaYNhLUgMM
+e0lqgGEvSQ0w7CWpAYa9NIKN265fM/erX0u1avkY9pLUAMNekhpg2EtSA0b5G7SSeo6Fa63yyF6S
+GmDYS1IDDHtJaoBhLzXEa/DbZdhLUgMMe0lqgGEvSQ0w7CWpAYa9JDXAsJekBhj2ktSABe+Nk+TF
+wB8BLwSeAbZX1e8mOQS4AtgI7AbeVFWPTq9UafVZK9esr5U6NT2jHNk/DfzbqjoGOAn4lSTHAtuA
+G6vqaODGflqStAotGPZV9XBVfbZ//gRwF/Ai4GxgR7/YDuCcaRUpSRrPosbsk2wETgBuAg6vqoeh
++0AADpt0cZKkyRg57JM8H/gw8Paq+voi1tuaZFeSXXv37l1KjZKkMY0U9kn2owv6y6rqqn72I0mO
+6NuPAPYMW7eqtlfV5qravGHDhknULElapAXDPkmAS4C7qup3BpquBbb0z7cA10y+PEnSJIzyZwlP
+Bt4KfC7Jrf28fw9cDFyZ5Hzgi8Abp1OiJGlcC4Z9Vf0ZkDmaT51sOZKWw8x197svPmuFK9Fy8Tdo
+JakBhr0kNcCwl6QGGPaS1ADDXpIaYNhLUgMMe0lqgGEvSQ0w7CWpAYa9JDXAsJekBhj2ktQAw16S
+GmDYS1IDRrmfvaQ1aOY2xhJ4ZC9JTTDsJakBhr0kNcCwl6QGGPaS1ADDXpIaYNhLUgMMe0lqgGEv
+SQ0w7CWpAYa9JDXAe+NIvcF7yey++KxnzZPWMo/sJakBhr0kNcCwl6QGGPaS1IAFwz7JpUn2JLlj
+YN4hSXYmubf/efB0y5QkjWOUI/sPAqfPmrcNuLGqjgZu7KclSavUgmFfVZ8GvjZr9tnAjv75DuCc
+CdclSZqgpY7ZH15VDwP0Pw+ba8EkW5PsSrJr7969S3w5SdOwcdv1c/4uwXxtWnumfoK2qrZX1eaq
+2rxhw4Zpv5wkaYilhv0jSY4A6H/umVxJkqRJW2rYXwts6Z9vAa6ZTDmSpGkY5dLLPwH+HHhFkgeT
+nA9cDPxMknuBn+mnJUmr1II3QquqN8/RdOqEa5EkTYm/QStJDTDsJakB3s9eGqK168tn/r0z9/HX
+vscje0lqgGEvSQ0w7CXNy9sm7BsMe0lqgGEvSQ0w7CWpAV56qWZ5ueGzLWZs3v5bWzyyl6QGGPaS
+1ADDXpIa4Ji99kmDY88zY8peK66WeWQvSQ0w7CWpAYa9JDXAsJekBhj2ktQAw16SGmDYS1IDvM5e
+zfP6e7XAI3tJaoBhL0kNMOwlqQGO2Wuf55j8ZM3Xn97jfvXyyF6SGmDYS1IDDHtJaoBj9lqTZo8N
+Oy4/fUvpY8fwV4+xjuyTnJ7kniT3Jdk2qaIkSZO15LBPsg74PeAM4FjgzUmOnVRhkqTJGefI/kTg
+vqp6oKr+HrgcOHsyZUmSJilVtbQVkzcAp1fVL/bTbwV+rKoumLXcVmBrP/nDwB1LL3fZHAp8ZaWL
+GMFaqHMt1AjWOWnWOVmvqKoDx9nAOCdoM2Tesz45qmo7sB0gya6q2jzGay4L65yctVAjWOekWedk
+Jdk17jbGGcZ5EHjxwPSRwEPjlSNJmoZxwv4vgaOTHJVkf+Bc4NrJlCVJmqQlD+NU1dNJLgA+BqwD
+Lq2qOxdYbftSX2+ZWefkrIUawTonzTona+w6l3yCVpK0dni7BElqgGEvSQ2YeNgneWOSO5M8k2Tz
+rLZ39LdWuCfJz86x/lFJbkpyb5Ir+pO/U9W/zq39Y3eSW+dYbneSz/XLjX0p1BLqvCjJlwdqPXOO
+5VbsNhZJ/muSu5PcnuTqJAfNsdyK9OVCfZPkgH5/uK/fDzcuV20DNbw4ySeT3NX/X3rbkGVOSfL4
+wL7wG8tdZ1/HvO9jOv+978/bk7xqBWp8xUA/3Zrk60nePmuZFenPJJcm2ZPkjoF5hyTZ2WfgziQH
+z7Huln6Ze5NsWfDFqmqiD+AY4BXAp4DNA/OPBW4DDgCOAu4H1g1Z/0rg3P75+4F/OekaF6j/t4Hf
+mKNtN3DoctYz6/UvAv7dAsus6/v2ZcD+fZ8fu4w1ngas75+/G3j3aunLUfoG+FfA+/vn5wJXrMD7
+fATwqv75gcDnh9R5CnDdcte22PcROBP4KN3v5ZwE3LTC9a4D/gZ46WroT+CngFcBdwzM+y1gW/98
+27D/Q8AhwAP9z4P75wfP91oTP7Kvqruq6p4hTWcDl1fVN6vqr4H76G658B1JArwa+FA/awdwzqRr
+nEv/+m8C/mS5XnMKVvQ2FlX18ap6up/8C7rfv1gtRumbs+n2O+j2w1P7/WLZVNXDVfXZ/vkTwF3A
+i5azhgk6G/ij6vwFcFCSI1awnlOB+6vqCytYw3dU1aeBr82aPbgPzpWBPwvsrKqvVdWjwE7g9Ple
+aznH7F8EfGlg+kGevQP/APDYQFgMW2aafhJ4pKrunaO9gI8nubm/DcRKuKD/OnzpHF/vRunn5XIe
+3VHdMCvRl6P0zXeW6ffDx+n2yxXRDyOdANw0pPkfJbktyUeTvHJZC/uuhd7H1bQ/Qvdtba6DudXQ
+nwCHV9XD0H3wA4cNWWbR/bqk6+yT/F/ghUOaLqyqa+Zabci82dd9jnQLhqUYseY3M/9R/clV9VCS
+w4CdSe7uP5knZr46gfcBv0nXJ79JN+R03uxNDFl3otfXjtKXSS4EngYum2MzU+/LIVZ0H1ysJM8H
+Pgy8vaq+Pqv5s3RDEU/2524+Ahy93DWy8Pu4mvpzf+B1wDuGNK+W/hzVovt1SWFfVa9Zwmqj3F7h
+K3Rf89b3R1UTuwXDQjUnWQ/8E+BH59nGQ/3PPUmuphsWmGhAjdq3Sf4QuG5I09RvYzFCX24BXguc
+Wv0A45BtTL0vhxilb2aWebDfJ17As79mT12S/eiC/rKqump2+2D4V9UNSX4/yaFVtaw39RrhfVxN
+t1U5A/hsVT0yu2G19GfvkSRHVNXD/ZDXniHLPEh3nmHGkXTnSee0nMM41wLn9lc7HEX3qfmZwQX6
+YPgk8IZ+1hZgrm8Kk/Ya4O6qenBYY5LnJTlw5jndichlvYPnrLHO18/x+it6G4skpwO/Bryuqv52
+jmVWqi9H6Ztr6fY76PbDT8z1gTUt/TmCS4C7qup35ljmhTPnEpKcSPd/+avLV+XI7+O1wC/0V+Wc
+BDw+M0SxAub85r4a+nPA4D44VwZ+DDgtycH9cO5p/by5TeHs8uvpPnW+CTwCfGyg7UK6qyHuAc4Y
+mH8D8IP985fRfQjcB/wf4IBJ1zhH3R8EfnnWvB8Ebhio67b+cSfdkMVyn7n/Y+BzwO39DnHE7Dr7
+6TPpruC4f7nr7N+3LwG39o/3z65xJftyWN8A76T7cAJ4br/f3dfvhy9bgff5J+i+kt8+0I9nAr88
+s48CF/R9dxvdifAfX4E6h76Ps+oM3R85ur/fdzcvd519Hf+ALrxfMDBvxfuT7sPnYeBbfW6eT3eO
+6Ebg3v7nIf2ym4EPDKx7Xr+f3gf884Vey9slSFID/A1aSWqAYS9JDTDsJakBhr0kNcCwl6QGGPaS
+1ADDXpIa8P8BEb7Ae9JKdQAAAAAASUVORK5CYII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div class="alert alert-success">
+It is important to note a subtle different between <code>display</code> and <code>display_png</code>. The former computes <em>all</em> representations of the object, and lets the notebook UI decide which to display. The later only computes the PNG representation.
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Create a new Gaussian with different parameters:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x2</span> <span class="o">=</span> <span class="n">Gaussian</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">x2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$\mathcal{N}(\mu=0, \sigma=2),\ N=2000$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can then compare the two Gaussians by displaying their histograms:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display_png</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">display_png</span><span class="p">(</span><span class="n">x2</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+LnYAAAAASUVORK5CYII=
+"
+>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Note that like <code>print</code>, you can call any of the <code>display</code> functions multiple times in a cell.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Adding-IPython-display-support-to-existing-objects">Adding IPython display support to existing objects<a class="anchor-link" href="#Adding-IPython-display-support-to-existing-objects">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When you are directly writing your own classes, you can adapt them for display in IPython by following the above approach.  But in practice, you often need to work with existing classes that you can't easily modify. We now illustrate how to add rich output capabilities to existing objects. We will use the NumPy polynomials and change their default representation to be a formatted LaTeX expression.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>First, consider how a NumPy polynomial object renders by default:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polynomial</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="n">p</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[9]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Polynomial([ 1.,  2.,  3.], [-10.,  10.], [-1,  1])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Next, define a function that pretty-prints a polynomial as a LaTeX string:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">poly_to_latex</span><span class="p">(</span><span class="n">p</span><span class="p">):</span>
+    <span class="n">terms</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;</span><span class="si">%.2g</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">p</span><span class="o">.</span><span class="n">coef</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">term</span> <span class="o">=</span> <span class="s1">&#39;x&#39;</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">coef</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">c</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">term</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%.2g</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="n">term</span>
+        <span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">p</span><span class="p">)):</span>
+            <span class="n">term</span> <span class="o">=</span> <span class="s1">&#39;x^</span><span class="si">%d</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">i</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">coef</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">c</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">term</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;</span><span class="si">%.2g</span><span class="s1"> &#39;</span> <span class="o">%</span> <span class="n">c</span><span class="p">)</span> <span class="o">+</span> <span class="n">term</span>
+            <span class="n">terms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">term</span><span class="p">)</span>
+    <span class="n">px</span> <span class="o">=</span> <span class="s1">&#39;$P(x)=</span><span class="si">%s</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="s1">&#39;+&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">terms</span><span class="p">)</span>
+    <span class="n">dom</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;, $x \in [</span><span class="si">%.2g</span><span class="s1">,\ </span><span class="si">%.2g</span><span class="s1">]$&#39;</span> <span class="o">%</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">domain</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">px</span><span class="o">+</span><span class="n">dom</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This produces, on our polynomial <code>p</code>, the following:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[11]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">poly_to_latex</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[11]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;$P(x)=1+2 x+3 x^2$, $x \\in [-10,\\ 10]$&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>You can render this string using the <code>Latex</code> class:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">Latex</span>
+<span class="n">Latex</span><span class="p">(</span><span class="n">poly_to_latex</span><span class="p">(</span><span class="n">p</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[12]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$P(x)=1+2 x+3 x^2$, $x \in [-10,\ 10]$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However, you can configure IPython to do this automatically by registering the <code>Polynomial</code> class and the <code>poly_to_latex</code> function with an IPython display formatter. Let's look at the default formatters provided by IPython:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ip</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">mime</span><span class="p">,</span> <span class="n">formatter</span> <span class="ow">in</span> <span class="n">ip</span><span class="o">.</span><span class="n">display_formatter</span><span class="o">.</span><span class="n">formatters</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">%24s</span><span class="s1"> : </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">mime</span><span class="p">,</span> <span class="n">formatter</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>              text/plain : PlainTextFormatter
+               text/html : HTMLFormatter
+           text/markdown : MarkdownFormatter
+           image/svg+xml : SVGFormatter
+               image/png : PNGFormatter
+         application/pdf : PDFFormatter
+              image/jpeg : JPEGFormatter
+              text/latex : LatexFormatter
+        application/json : JSONFormatter
+  application/javascript : JavascriptFormatter
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The <code>formatters</code> attribute is a dictionary keyed by MIME types. To define a custom LaTeX display function, you want a handle on the <code>text/latex</code> formatter:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ip</span> <span class="o">=</span> <span class="n">get_ipython</span><span class="p">()</span>
+<span class="n">latex_f</span> <span class="o">=</span> <span class="n">ip</span><span class="o">.</span><span class="n">display_formatter</span><span class="o">.</span><span class="n">formatters</span><span class="p">[</span><span class="s1">&#39;text/latex&#39;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The formatter object has a couple of methods for registering custom display functions for existing types.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">latex_f</span><span class="o">.</span><span class="n">for_type</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on method for_type in module IPython.core.formatters:
+
+for_type(typ, func=None) method of IPython.core.formatters.LatexFormatter instance
+    Add a format function for a given type.
+    
+    Parameters
+    -----------
+    typ : type or &#39;__module__.__name__&#39; string for a type
+        The class of the object that will be formatted using `func`.
+    func : callable
+        A callable for computing the format data.
+        `func` will be called with the object to be formatted,
+        and will return the raw data in this formatter&#39;s format.
+        Subclasses may use a different call signature for the
+        `func` argument.
+        
+        If `func` is None or not specified, there will be no change,
+        only returning the current value.
+    
+    Returns
+    -------
+    oldfunc : callable
+        The currently registered callable.
+        If you are registering a new formatter,
+        this will be the previous value (to enable restoring later).
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">latex_f</span><span class="o">.</span><span class="n">for_type_by_name</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on method for_type_by_name in module IPython.core.formatters:
+
+for_type_by_name(type_module, type_name, func=None) method of IPython.core.formatters.LatexFormatter instance
+    Add a format function for a type specified by the full dotted
+    module and name of the type, rather than the type of the object.
+    
+    Parameters
+    ----------
+    type_module : str
+        The full dotted name of the module the type is defined in, like
+        ``numpy``.
+    type_name : str
+        The name of the type (the class name), like ``dtype``
+    func : callable
+        A callable for computing the format data.
+        `func` will be called with the object to be formatted,
+        and will return the raw data in this formatter&#39;s format.
+        Subclasses may use a different call signature for the
+        `func` argument.
+        
+        If `func` is None or unspecified, there will be no change,
+        only returning the current value.
+    
+    Returns
+    -------
+    oldfunc : callable
+        The currently registered callable.
+        If you are registering a new formatter,
+        this will be the previous value (to enable restoring later).
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this case, we will use <code>for_type_by_name</code> to register <code>poly_to_latex</code> as the display function for the <code>Polynomial</code> type:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">latex_f</span><span class="o">.</span><span class="n">for_type_by_name</span><span class="p">(</span><span class="s1">&#39;numpy.polynomial.polynomial&#39;</span><span class="p">,</span>
+                                 <span class="s1">&#39;Polynomial&#39;</span><span class="p">,</span> <span class="n">poly_to_latex</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Once the custom display function has been registered, all NumPy <code>Polynomial</code> instances will be represented by their LaTeX form instead:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[18]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$P(x)=1+2 x+3 x^2$, $x \in [-10,\ 10]$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[19]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">p2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polynomial</span><span class="o">.</span><span class="n">Polynomial</span><span class="p">([</span><span class="o">-</span><span class="mi">20</span><span class="p">,</span> <span class="mi">71</span><span class="p">,</span> <span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">p2</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt output_prompt">Out[19]:</div>
+
+
+
+
+<div class="output_latex output_subarea output_execute_result">
+$P(x)=-20+71 x+-15 x^2+x^3$, $x \in [-1,\ 1]$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Custom-Mimetypes-with-_repr_mimebundle_">Custom Mimetypes with <code>_repr_mimebundle_</code><a class="anchor-link" href="#Custom-Mimetypes-with-_repr_mimebundle_">&#182;</a></h2><p>Available on IPython 5.4+ and 6.1+.</p>
+<p>For objects needing full control over the <code>repr</code> protocol may decide to implement the <code>_repr_mimebundle_(include, exclude)</code> method.
+Unlike the other <code>_repr_*_</code> methods must return many representation of the object in a mapping object which keys are <em>mimetypes</em> and value are associated data. The <code>_repr_mimebundle_()</code> method, may also return a second mapping from <em>mimetypes</em> to metadata.</p>
+<p>Example:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[20]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">class</span> <span class="nc">Gaussian</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;A simple object holding data sampled from a Gaussian distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">std</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">std</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mean</span> <span class="o">=</span> <span class="n">mean</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">std</span> <span class="o">=</span> <span class="n">std</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="c1"># For caching plots that may be expensive to compute</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_png_data</span> <span class="o">=</span> <span class="kc">None</span>
+        
+    <span class="k">def</span> <span class="nf">_figure_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">format</span><span class="p">):</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">bins</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+        <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">10.0</span><span class="p">,</span><span class="mf">10.0</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">print_figure</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="nb">format</span><span class="p">)</span>
+        <span class="c1"># We MUST close the figure, otherwise IPython&#39;s display machinery</span>
+        <span class="c1"># will pick it up and send it as output, resulting in a double display</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">close</span><span class="p">(</span><span class="n">fig</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">data</span>
+    
+    <span class="k">def</span> <span class="nf">_compute_mathml</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        &lt;math xmlns=&quot;http://www.w3.org/1998/Math/MathML&quot;&gt;</span>
+<span class="s2">          &lt;mrow class=&quot;MJX-TeXAtom-ORD&quot;&gt;</span>
+<span class="s2">            &lt;mi class=&quot;MJX-tex-caligraphic&quot; mathvariant=&quot;script&quot;&gt;N&lt;/mi&gt;</span>
+<span class="s2">          &lt;/mrow&gt;</span>
+<span class="s2">          &lt;mo stretchy=&quot;false&quot;&gt;(&lt;/mo&gt;</span>
+<span class="s2">          &lt;mi&gt;&amp;#x03BC;&lt;!-- μ --&gt;&lt;/mi&gt;</span>
+<span class="s2">          &lt;mo&gt;=&lt;/mo&gt;</span>
+<span class="s2">          &lt;mn&gt;</span><span class="si">{mu}</span><span class="s2">&lt;/mn&gt;</span>
+<span class="s2">          &lt;mo&gt;,&lt;/mo&gt;</span>
+<span class="s2">          &lt;mi&gt;&amp;#x03C3;&lt;!-- σ --&gt;&lt;/mi&gt;</span>
+<span class="s2">          &lt;mo&gt;=&lt;/mo&gt;</span>
+<span class="s2">          &lt;mn&gt;</span><span class="si">{sigma}</span><span class="s2">&lt;/mn&gt;</span>
+<span class="s2">          &lt;mo stretchy=&quot;false&quot;&gt;)&lt;/mo&gt;</span>
+<span class="s2">          &lt;mo&gt;,&lt;/mo&gt;</span>
+<span class="s2">          &lt;mtext&gt;&amp;#xA0;&lt;/mtext&gt;</span>
+<span class="s2">          &lt;mi&gt;N&lt;/mi&gt;</span>
+<span class="s2">          &lt;mo&gt;=&lt;/mo&gt;</span>
+<span class="s2">          &lt;mn&gt;</span><span class="si">{N}</span><span class="s2">&lt;/mn&gt;</span>
+<span class="s2">        &lt;/math&gt;</span>
+<span class="s2">        &quot;&quot;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">N</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">,</span> <span class="n">mu</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span> <span class="n">sigma</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">std</span><span class="p">)</span>
+        
+    <span class="k">def</span> <span class="nf">_repr_mimebundle_</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">include</span><span class="p">,</span> <span class="n">exclude</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        repr_mimebundle should accept include, exclude and **kwargs</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_png_data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_png_data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_figure_data</span><span class="p">(</span><span class="s1">&#39;png&#39;</span><span class="p">)</span>
+        <span class="n">math</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;$\mathcal</span><span class="si">{N}</span><span class="s1">(\mu=</span><span class="si">%.2g</span><span class="s1">, \sigma=</span><span class="si">%.2g</span><span class="s1">),\ N=</span><span class="si">%d</span><span class="s1">$&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mean</span><span class="p">,</span>
+                                                                 <span class="bp">self</span><span class="o">.</span><span class="n">std</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;image/png&#39;</span><span class="p">:</span><span class="bp">self</span><span class="o">.</span><span class="n">_png_data</span><span class="p">,</span>
+                <span class="s1">&#39;text/latex&#39;</span><span class="p">:</span><span class="n">math</span><span class="p">,</span>
+                <span class="s1">&#39;application/mathml+xml&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">_compute_mathml</span><span class="p">()</span>
+                <span class="p">}</span>
+        <span class="k">if</span> <span class="n">include</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">include</span><span class="p">}</span>
+        <span class="k">if</span> <span class="n">exclude</span><span class="p">:</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span> <span class="k">for</span> <span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">k</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exclude</span><span class="p">}</span>
+        <span class="k">return</span> <span class="n">data</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[21]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># that is definitively wrong as it should show the PNG. </span>
+<span class="n">display</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_latex output_subarea ">
+$\mathcal{N}(\mu=0, \sigma=1),\ N=1000$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In the above example, the 3 mimetypes are embedded in the notebook document this allowing custom extensions and converters to display the representation(s) of their choice.</p>
+<p>For example, converting this noetebook to <em>epub</em> may decide to use the MathML representation as most ebook reader cannot run mathjax (unlike browsers).</p>
+<h3 id="Implementation-guidelines">Implementation guidelines<a class="anchor-link" href="#Implementation-guidelines">&#182;</a></h3><p>The <code>_repr_mimebundle_</code> methods is also given two keywords parameters :  <code>include</code> and <code>exclude</code>. Each can be a  containers (e.g.:<code>list</code>, <code>set</code> ...) of mimetypes to return or <code>None</code>, This allows implementation to avoid computing potentially unnecessary and expensive mimetypes representations.</p>
+<p>When <code>include</code> is non-empty (empty <code>list</code> or None), <code>_repr_mimebundle_</code> may decide to returns only the mimetypes in include.
+When <code>exclude</code> is non-empty, <code>_repr_mimebundle_</code> may decide to not return any mimetype in exclude. 
+If both <code>include</code> and <code>exclude</code> and overlap, mimetypes present in exclude may not be returned.</p>
+<p>If implementations decide to ignore the <code>include</code> and <code>exclude</code> logic and always returns a full mimebundles, the IPython kernel will take care of removing non-desired representations.</p>
+<p>The <code>_repr_mimebundle_</code> method should accept arbitrary keyword arguments for future compatiility.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(),</span> <span class="n">include</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text/latex&#39;</span><span class="p">})</span> <span class="c1"># only show latex</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_latex output_subarea ">
+$\mathcal{N}(\mu=0, \sigma=1),\ N=1000$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(),</span> <span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;image/png&#39;</span><span class="p">})</span> <span class="c1"># exclude png</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_latex output_subarea ">
+$\mathcal{N}(\mu=0, \sigma=1),\ N=1000$
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[24]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">display</span><span class="p">(</span><span class="n">Gaussian</span><span class="p">(),</span> <span class="n">include</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;text/plain&#39;</span><span class="p">,</span> <span class="s1">&#39;image/png&#39;</span><span class="p">},</span> <span class="n">exclude</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;image/png&#39;</span><span class="p">})</span> <span class="c1"># keep only plain/text</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+<div class="output_text output_subarea ">
+<pre>&lt;__main__.Gaussian at 0x11a8a0b38&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="More-complex-display-with-_ipython_display_">More complex display with <code>_ipython_display_</code><a class="anchor-link" href="#More-complex-display-with-_ipython_display_">&#182;</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Rich output special methods and functions can only display one object or MIME type at a time. Sometimes this is not enough if you want to display multiple objects or MIME types at once. An example of this would be to use an HTML representation to put some HTML elements in the DOM and then use a JavaScript representation to add events to those elements.</p>
+<p><strong>IPython 2.0</strong> recognizes another display method, <code>_ipython_display_</code>, which allows your objects to take complete control of displaying themselves. If this method is defined, IPython will call it, and make no effort to display the object using the above described <code>_repr_*_</code> methods for custom display functions. It's a way for you to say "Back off, IPython, I can display this myself." Most importantly, your <code>_ipython_display_</code> method can make multiple calls to the top-level <code>display</code> functions to accomplish its goals.</p>
+<p>Here is an object that uses <code>display_html</code> and <code>display_javascript</code> to make a plot using the <a href="http://www.flotcharts.org/">Flot</a> JavaScript plotting library:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">uuid</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display_javascript</span><span class="p">,</span> <span class="n">display_html</span><span class="p">,</span> <span class="n">display</span>
+
+<span class="k">class</span> <span class="nc">FlotPlot</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">uuid</span><span class="o">.</span><span class="n">uuid4</span><span class="p">())</span>
+    
+    <span class="k">def</span> <span class="nf">_ipython_display_</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">json_data</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)))</span>
+        <span class="n">display_html</span><span class="p">(</span><span class="s1">&#39;&lt;div id=&quot;</span><span class="si">{}</span><span class="s1">&quot; style=&quot;height: 300px; width:80%;&quot;&gt;&lt;/div&gt;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">),</span>
+            <span class="n">raw</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+        <span class="n">display_javascript</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        require([&quot;//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.min.js&quot;], function() {</span>
+<span class="s2">          var line = JSON.parse(&quot;</span><span class="si">%s</span><span class="s2">&quot;);</span>
+<span class="s2">          console.log(line);</span>
+<span class="s2">          $.plot(&quot;#</span><span class="si">%s</span><span class="s2">&quot;, [line]);</span>
+<span class="s2">        });</span>
+<span class="s2">        &quot;&quot;&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">json_data</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">uuid</span><span class="p">),</span> <span class="n">raw</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[26]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">FlotPlot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+<div class="output_html rendered_html output_subarea ">
+<div id="c6929609-3cb6-4443-9574-d9f71791a987" style="height: 300px; width:80%;"></div>
+</div>
+
+</div>
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+
+
+
+<div id="16abeda5-7a0e-44b2-b1f9-db971034b978"></div>
+<div class="output_subarea output_javascript ">
+<script type="text/javascript">
+var element = $('#16abeda5-7a0e-44b2-b1f9-db971034b978');
+
+        require(["//cdnjs.cloudflare.com/ajax/libs/flot/0.8.2/jquery.flot.min.js"], function() {
+          var line = JSON.parse("[[0.0, 0.0], [0.20408163265306123, 0.20266793654820095], [0.40816326530612246, 0.39692414892492234], [0.6122448979591837, 0.5747060412161791], [0.8163265306122449, 0.7286347834693503], [1.0204081632653061, 0.8523215697196184], [1.2244897959183674, 0.9406327851124867], [1.4285714285714286, 0.9899030763721239], [1.6326530612244898, 0.9980874821347183], [1.836734693877551, 0.9648463089837632], [2.0408163265306123, 0.8915592304110037], [2.2448979591836737, 0.7812680235262639], [2.4489795918367347, 0.6385503202266021], [2.6530612244897958, 0.469329612777201], [2.857142857142857, 0.28062939951435684], [3.0612244897959187, 0.0802816748428135], [3.2653061224489797, -0.12339813736217871], [3.4693877551020407, -0.3219563150726187], [3.673469387755102, -0.5071517094845144], [3.8775510204081636, -0.6712977935519321], [4.081632653061225, -0.8075816909683364], [4.285714285714286, -0.9103469443107828], [4.4897959183673475, -0.9753282860670456], [4.6938775510204085, -0.9998286683840896], [4.8979591836734695, -0.9828312039256306], [5.1020408163265305, -0.9250413717382029], [5.3061224489795915, -0.8288577363730427], [5.510204081632653, -0.6982723955653996], [5.714285714285714, -0.5387052883861563], [5.918367346938775, -0.35677924089893803], [6.122448979591837, -0.16004508604325057], [6.326530612244898, 0.04333173336868346], [6.530612244897959, 0.2449100710119793], [6.73469387755102, 0.4363234264718193], [6.938775510204081, 0.6096271964908323], [7.142857142857143, 0.7576284153927202], [7.346938775510204, 0.8741842988197335], [7.551020408163265, 0.9544571997387519], [7.755102040816327, 0.9951153947776636], [7.959183673469388, 0.9944713672636168], [8.16326530612245, 0.9525518475314604], [8.36734693877551, 0.8710967034823207], [8.571428571428571, 0.7534867274396376], [8.775510204081632, 0.6046033165061543], [8.979591836734695, 0.43062587038273736], [9.183673469387756, 0.23877531564403087], [9.387755102040817, 0.03701440148506237], [9.591836734693878, -0.1662827938487564], [9.795918367346939, -0.3626784288265488], [10.0, -0.5440211108893699]]");
+          console.log(line);
+          $.plot("#c6929609-3cb6-4443-9574-d9f71791a987", [line]);
+        });
+        
+</script>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+ 
+

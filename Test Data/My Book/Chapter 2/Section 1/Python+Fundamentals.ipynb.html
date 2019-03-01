@@ -1,0 +1,619 @@
+
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Modify your script to write your history variable to a file</span>
+<span class="sd">read file to a list</span>
+<span class="sd">sort the list</span>
+<span class="sd">create method for calcScore</span>
+<span class="sd">write only words that have score &gt; 20 to the list</span>
+
+<span class="sd">&#39;&#39;&#39;</span> 
+<span class="c1">#Your next assignment is to append all your answers to a variable named history and show history after the user quits</span>
+<span class="n">history</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a movie you like or press &#39;q&#39; to quit: &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">answer</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">history</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">answer</span>
+        <span class="c1">#print(&quot;You entered &quot; + answer)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;You will now exit the program.&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">history</span><span class="p">)</span>
+
+<span class="c1">#Your next assignment is to add a counter to the movies</span>
+<span class="c1">#---------------------------------------------------------------------------------</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a movie you like or press &#39;q&#39; to quit: &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">answer</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;You entered &quot;</span> <span class="o">+</span> <span class="n">answer</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;You will now exit the program.&quot;</span><span class="p">)</span>
+<span class="c1">#---------------------------------------------------------------------------------</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">how to change default browser in iPython notebook</span>
+
+<span class="sd">http://stackoverflow.com/questions/15632663/launch-ipython-notebook-with-selected-browser</span>
+
+<span class="sd">import webbrowser</span>
+
+<span class="sd">webbrowser.register(&#39;chrome&#39;, None, webbrowser.GenericBrowser(&#39;C:\\Program Files (x86)\\Google\\Chrome\\Application\\Chrome.exe&#39;))</span>
+<span class="sd">c.NotebookApp.browser = &#39;chrome&#39;</span>
+<span class="sd">&#39;&#39;&#39;</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># A python helper function that prints code </span>
+<span class="k">for</span> <span class="n">letter</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">65</span><span class="p">,</span><span class="mi">91</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;elif letter.upper() == &#39;&quot;</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;&#39;:&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;    score = 1&quot;</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;        else:&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;        score = 1&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;return score&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>elif letter.upper() == &#39;A&#39;:
+    score = 1
+elif letter.upper() == &#39;B&#39;:
+    score = 1
+elif letter.upper() == &#39;C&#39;:
+    score = 1
+elif letter.upper() == &#39;D&#39;:
+    score = 1
+elif letter.upper() == &#39;E&#39;:
+    score = 1
+elif letter.upper() == &#39;F&#39;:
+    score = 1
+elif letter.upper() == &#39;G&#39;:
+    score = 1
+elif letter.upper() == &#39;H&#39;:
+    score = 1
+elif letter.upper() == &#39;I&#39;:
+    score = 1
+elif letter.upper() == &#39;J&#39;:
+    score = 1
+elif letter.upper() == &#39;K&#39;:
+    score = 1
+elif letter.upper() == &#39;L&#39;:
+    score = 1
+elif letter.upper() == &#39;M&#39;:
+    score = 1
+elif letter.upper() == &#39;N&#39;:
+    score = 1
+elif letter.upper() == &#39;O&#39;:
+    score = 1
+elif letter.upper() == &#39;P&#39;:
+    score = 1
+elif letter.upper() == &#39;Q&#39;:
+    score = 1
+elif letter.upper() == &#39;R&#39;:
+    score = 1
+elif letter.upper() == &#39;S&#39;:
+    score = 1
+elif letter.upper() == &#39;T&#39;:
+    score = 1
+elif letter.upper() == &#39;U&#39;:
+    score = 1
+elif letter.upper() == &#39;V&#39;:
+    score = 1
+elif letter.upper() == &#39;W&#39;:
+    score = 1
+elif letter.upper() == &#39;X&#39;:
+    score = 1
+elif letter.upper() == &#39;Y&#39;:
+    score = 1
+elif letter.upper() == &#39;Z&#39;:
+    score = 1
+        else:
+        score = 1
+return score
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="sd">&#39;&#39;&#39;Your next assignmemt is to create a function for happy birthday&#39;&#39;&#39;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span> <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Happy Birthday&quot;</span><span class="p">,</span> <span class="p">((</span><span class="n">i</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="p">(</span><span class="s2">&quot;Dear Scott&quot;</span><span class="p">,))</span> <span class="ow">or</span> <span class="p">(</span><span class="s2">&quot;to you&quot;</span><span class="p">,))[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(&#39;Happy Birthday&#39;, &#39;to you&#39;)
+(&#39;Happy Birthday&#39;, &#39;to you&#39;)
+(&#39;Happy Birthday&#39;, &#39;Dear Scott&#39;)
+(&#39;Happy Birthday&#39;, &#39;to you&#39;)
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#---------------------------------------------------------------------------------</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Your next assignment is to create a function to calculate the scrabble score of a letter</span>
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="c1">#---------------------------------------------------------------------------------</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Your next assignment is to create a function to calculate the scrabble score of a word</span>
+<span class="sd">&#39;&#39;&#39;</span> 
+
+<span class="c1">#---------------------------------------------------------------------------------</span>
+<span class="k">def</span> <span class="nf">calcLetterScore</span><span class="p">(</span><span class="n">letter</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;B&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;C&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;D&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;F&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;G&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;H&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;J&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;K&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">5</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;M&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;P&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">3</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Q&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;V&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;W&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;X&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">8</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Y&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="k">elif</span> <span class="n">letter</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;Z&#39;</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">score</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">score</span>
+
+<span class="k">def</span> <span class="nf">calcWordScore</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">score</span> <span class="o">+=</span> <span class="n">calcLetterScore</span><span class="p">(</span><span class="n">word</span><span class="p">[</span><span class="n">char</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">score</span>
+
+    
+
+<span class="k">print</span><span class="p">(</span><span class="n">calcLetterScore</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">calcWordScore</span><span class="p">(</span><span class="s2">&quot;QZM&quot;</span><span class="p">))</span>
+    
+
+    
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10
+20
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Your next assignment is to write the history to a file</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">history</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.txt&quot;</span><span class="p">,</span><span class="s1">&#39;a&#39;</span><span class="p">)</span><span class="c1">#use w for write, a for append, r for read</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter a movie you like or press &#39;q&#39; to quit: &quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">answer</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;q&#39;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">history</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">answer</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="c1">#print(&quot;You entered &quot; + answer)</span>
+<span class="n">history</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1">#now open the file and read it into a dictionary</span>
+<span class="n">history</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.txt&quot;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">line</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="c1">#It is not necessary to close the file</span>
+
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;You will now exit the program.&quot;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Enter a movie you like or press &#39;q&#39; to quit: Star Wars
+Enter a movie you like or press &#39;q&#39; to quit: Frozen
+Enter a movie you like or press &#39;q&#39; to quit: Toy Story
+Enter a movie you like or press &#39;q&#39; to quit: q
+Kelly&#39;s Heroes
+Animal House
+Blues Brothers
+Fargo
+Raising Arizona
+Star Wars
+Frozen
+Toy Story
+You will now exit the program.
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#What directory is my file in???</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;The current working directory is &quot;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">())</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>The current working directory is /Users/sterlingbusinessadvantage/Dropbox/dave45678/Python Fundamentals/iPython
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1">#---------------------------------------------------------------------------------</span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Your next assignment is to read the history file into a list then sort the list </span>
+<span class="sd">&#39;&#39;&#39;</span>
+<span class="n">movielist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">history</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.txt&quot;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">movielist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>   
+
+<span class="n">movielist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">movielist</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0}. {1}&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">movielist</span><span class="p">[</span><span class="n">index</span><span class="p">]),</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">index</span> <span class="o">+=</span><span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Another way to print a list:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">movielist</span><span class="p">)</span>
+    
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1. Toy Story
+2. Animal House
+3. Blues Brothers
+4. Fargo
+5. Frozen
+6. Kelly&#39;s Heroes
+7. Raising Arizona
+8. Star Wars
+
+
+Another way to print a list:
+
+[&#39;Animal House\n&#39;, &#39;Blues Brothers\n&#39;, &#39;Fargo\n&#39;, &#39;Frozen\n&#39;, &#34;Kelly&#39;s Heroes\n&#34;, &#39;Raising Arizona\n&#39;, &#39;Star Wars\n&#39;, &#39;Toy Story\n&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Your next assignment is to calculate the scrabble score each word in your history list</span>
+<span class="sd">and save only the words that have a score in the top 10%.... so the top 10% highest scoring words</span>
+<span class="sd">&#39;&#39;&#39;</span> 
+<span class="n">movielist</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">history</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;myfile.txt&quot;</span><span class="p">,</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">line</span> <span class="o">=</span> <span class="n">history</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">line</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">movielist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+<span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>   
+
+<span class="n">movielist</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">movielist</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+    <span class="n">word</span> <span class="o">=</span> <span class="n">movielist</span><span class="p">[</span><span class="n">index</span><span class="p">]</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="c1">#remove line ending</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;{0}. {1} is worth {2} points!</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="n">word</span><span class="p">,</span><span class="n">calcWordScore</span><span class="p">(</span><span class="n">word</span><span class="p">)),</span><span class="n">end</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="n">index</span> <span class="o">+=</span><span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Another way to print a list:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="n">movielist</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1. Toy Story is worth 11 points!
+2. Animal House is worth 16 points!
+3. Blues Brothers is worth 20 points!
+4. Fargo is worth 8 points!
+5. Frozen is worth 17 points!
+6. Kelly&#39;s Heroes is worth 23 points!
+7. Raising Arizona is worth 24 points!
+8. Star Wars is worth 11 points!
+
+
+Another way to print a list:
+
+[&#39;Animal House\n&#39;, &#39;Blues Brothers\n&#39;, &#39;Fargo\n&#39;, &#39;Frozen\n&#39;, &#34;Kelly&#39;s Heroes\n&#34;, &#39;Raising Arizona\n&#39;, &#39;Star Wars\n&#39;, &#39;Toy Story\n&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Printing</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># can you figure out the difference between = and ==</span>
+<span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="k">print</span> <span class="n">a</span>
+<span class="n">a</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="k">print</span> <span class="n">a</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+<div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1
+1
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Comparisons">Comparisons<a class="anchor-link" href="#Comparisons">&#182;</a></h3><p><a href="https://docs.python.org/2/library/stdtypes.html">https://docs.python.org/2/library/stdtypes.html</a></p>
+<table>
+<thead><tr>
+<th>Operation</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>&lt;</td>
+<td>strictly less than     </td>
+</tr>
+<tr>
+<td>&lt;=</td>
+<td>less than or equal    </td>
+</tr>
+<tr>
+<td>&gt;</td>
+<td>strictly greater than  </td>
+</tr>
+<tr>
+<td>&gt;=</td>
+<td>greater than or equal     </td>
+</tr>
+<tr>
+<td>==</td>
+<td>equal     </td>
+</tr>
+<tr>
+<td>!=</td>
+<td>not equal</td>
+</tr>
+<tr>
+<td>is</td>
+<td>object identity   </td>
+</tr>
+<tr>
+<td>is not</td>
+<td>negated object identity   </td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+ 
+
